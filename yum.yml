@@ -1,0 +1,51 @@
+---
+
+- hosts: localhost
+  connection: local
+  tasks:
+    # - name: upgrade all packages
+    #   yum: name=* state=latest disablerepo=fedora-chromium-stable
+    #   sudo: yes
+
+    - yum: name={{ item }} state=latest
+      sudo: yes
+      with_items:
+        - yum-plugin-fastestmirror
+        - vim
+        - gvim
+        - gcc
+        - wine 
+        - eclipse
+        - gnome-tweak-tool
+        - xclip
+        - dconf-editor
+
+    - yum: name=python-pip state=latest
+      sudo: yes
+
+    - command: pip install vim-vint
+      sudo: yes
+
+    # required logout/login
+    - yum: name=ibus-mozc state=latest
+      sudo: yes
+
+    - name: get chromium repo
+      get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/fedora-chromium-stable.repo dest=/etc/yum.repos.d/
+      sudo: yes
+
+    - name: get chromium repo pgp
+      get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/spot.gpg dest=/etc/pki/rpm-gpg/spot.gpg
+      sudo: yes
+
+    - yum: name=chromium state=latest
+      sudo: yes
+
+    - copy: src=dropbox.repo dest=/etc/yum.repos.d/ follow=yes
+      sudo: yes
+
+    # required manual setup
+    - yum: name=nautilus-dropbox state=latest enablerepo=Dropbox
+      sudo: yes
+
+    - command: dropbox

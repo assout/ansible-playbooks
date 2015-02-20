@@ -1,0 +1,7 @@
+[Dropbox]
+name=Dropbox Repository
+# TODO fedora21はまだ未対応っぽい
+# baseurl=http://linux.dropbox.com/fedora/$releasever/
+baseurl=http://linux.dropbox.com/fedora/20/
+gpgkey=http://linux.dropbox.com/fedora/rpm-public-key.asc
+enabled=0
