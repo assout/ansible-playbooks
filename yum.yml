@@ -3,9 +3,9 @@
 - hosts: localhost
   connection: local
   tasks:
-    # - name: upgrade all packages
-    #   yum: name=* state=latest disablerepo=fedora-chromium-stable
-    #   sudo: yes
+    - name: upgrade all packages
+      yum: name=* state=latest disablerepo=fedora-chromium-stable
+      sudo: yes
 
     - yum: name={{ item }} state=latest
       sudo: yes
@@ -19,15 +19,16 @@
         - gnome-tweak-tool
         - xclip
         - dconf-editor
+        - python-pip
+        # required logout/login
+        - ibus-mozc
 
-    - yum: name=python-pip state=latest
-      sudo: yes
+    - command: which vint
+      register: has_vint
+      ignore_errors: yes
 
     - command: pip install vim-vint
-      sudo: yes
-
-    # required logout/login
-    - yum: name=ibus-mozc state=latest
+      when : has_vint.rc == 1
       sudo: yes
 
     - name: get chromium repo
@@ -49,3 +50,14 @@
       sudo: yes
 
     - command: dropbox
+
+    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+      register: has_kindle
+
+    - name: get kindle for pc for wine
+      get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
+      when: has_kindle.stat.md5 is not defined
+
+    - command: wine KindleForPC-installer.exe
+      when: has_kindle.stat.md5 is not defined
+
