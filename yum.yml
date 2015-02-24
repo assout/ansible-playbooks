@@ -11,17 +11,19 @@
       sudo: yes
       with_items:
         - yum-plugin-fastestmirror
-        - vim
-        - gvim
-        - gcc
-        - wine 
-        - eclipse
-        - gnome-tweak-tool
-        - xclip
         - dconf-editor
-        - python-pip
+        - eclipse
+        - gcc
+        - gnome-tweak-tool
+        - gvim
         # required logout/login
         - ibus-mozc
+        - python-pip
+        - vim
+        - wine 
+        - xclip
+        # for vim-plugin im_control.
+        - xvkbd
 
     - command: which vint
       register: has_vint
