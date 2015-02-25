@@ -1,10 +1,12 @@
 ---
 
+# TODO git repo destでローカルの変更がうわがかれるのを阻止したい.
 - hosts: localhost
   connection: local
   tasks:
     - command: ssh -T git@github.com
       register: exit
+      failed_when: exit.rc not in [0, 1]
 
     - user: name=oji generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
       when : exit.rc not in [0, 1]
@@ -35,3 +37,5 @@
       with_fileglob: /home/oji/development/RictyDiminished/*.ttf
       sudo: yes
 
+    - git: repo=git@github.com:assout/unite-todo.git
+           dest=/home/oji/development/unite-todo
