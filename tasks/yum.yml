@@ -47,7 +47,7 @@
     - yum: name=https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm state=present
       sudo: yes
 
-    - copy: src=dropbox.repo dest=/etc/yum.repos.d/ follow=yes
+    - copy: src=files/dropbox.repo dest=/etc/yum.repos.d/ follow=yes
       sudo: yes
 
     # required manual setup

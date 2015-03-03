@@ -1,4 +1,5 @@
 ---
+# TODO mozc の設定(ショートカットキー、スペースを半角のみ
 
 - hosts: localhost
   connection: local
@@ -20,7 +21,7 @@
     - command: gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command gnome-terminal
     - command: gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding Launch1
 
-    - copy: src=xmodmap.desktop dest=/home/oji/.config/autostart/ follow=yes
+    - copy: src=files/xmodmap.desktop dest=/home/oji/.config/autostart/ follow=yes
 
     # TODO キー設定インポートが自動化できてない
     - command: /usr/libexec/mozc/mozc_tool --mode=config_dialog
