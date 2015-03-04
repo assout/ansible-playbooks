@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Xmodmap
-GenericName=load my xmodmap
-Comment=load my xmodmap
-Exec=/usr/bin/xmodmap /home/oji/.Xmodmap
-Terminal=false
-Type=Application
-Hidden=false
-X-GNOME-Autostart-enabled=true
