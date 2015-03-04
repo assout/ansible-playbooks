@@ -1,0 +1,58 @@
+---
+
+# TODO ハードコード
+
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: eclipse | Install EclEmma Java Code Coverage(jacoco)
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://update.eclemma.org/ \
+      -installIU com.mountainminds.eclemma.feature.feature.group \
+      "
+
+    - name: eclipse | Install Eclipse Metrics Plugin(frank sauer)
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://metrics.sourceforge.net/update \
+      -installIU net.sourceforge.metrics.feature.group \
+      "
+
+    - name: eclipse | Install Java Decompiler Eclipse Plug-in | required Microsoft Visual C++ 2008 SP1 Redistributable Package
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://jd.benow.ca/jd-eclipse/update \
+      -installIU jd.ide.eclipse.feature.feature.group \
+      "
+
+    - name: eclipse | Install Quick JUnit
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://quick-junit.sourceforge.jp/updates/current/ \
+      -installIU junit.extensions.eclipse.quick.feature.feature.group \
+      -installIU junit.extensions.eclipse.quick.mock.feature.feature.group \
+      -installIU junit.extensions.eclipse.quick.process.feature.feature.group \
+      -installIU junit.extensions.eclipse.quick.template.feature.feature.group \
+      "
+
+    - name: eclipse | Install ShellEd
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://sourceforge.net/projects/shelled/files/shelled/update,http://download.eclipse.org/releases/luna \
+      -installIU net.sourceforge.shelled.feature.group \
+      "
+
+    - name: eclipse | Install Vrapper
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://vrapper.sourceforge.net/update-site/unstable \
+      -installIU net.sourceforge.vrapper.feature.group \
+      -installIU net.sourceforge.vrapper.eclipse.jdt.feature.feature.group \
+      -installIU net.sourceforge.vrapper.plugin.argtextobj.feature.group \
+      -installIU net.sourceforge.vrapper.plugin.indenttextobj.feature.group \
+      -installIU net.sourceforge.vrapper.plugin.linetextobj.feature.group \
+      -installIU net.sourceforge.vrapper.plugin.methodtextobj.feature.group \
+      -installIU net.sourceforge.vrapper.plugin.splitEditor.feature.group \
+      -installIU net.sourceforge.vrapper.plugin.surround.feature.group \
+      "
