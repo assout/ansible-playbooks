@@ -5,6 +5,13 @@
 - hosts: localhost
   connection: local
   tasks:
+    - name: eclipse | Install Marketplac Client
+      command: "eclipse -nosplash \
+      -application org.eclipse.equinox.p2.director \
+      -repository http://download.eclipse.org/releases/luna \
+      -installIU org.eclipse.epp.mpc.feature.group \
+      "
+
     - name: eclipse | Install EclEmma Java Code Coverage(jacoco)
       command: "eclipse -nosplash \
       -application org.eclipse.equinox.p2.director \
