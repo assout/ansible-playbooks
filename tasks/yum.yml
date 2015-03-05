@@ -66,3 +66,18 @@
     - command: wine KindleForPC-installer.exe
       when: has_kindle.stat.md5 is not defined
 
+    - name: Get latest peco version
+      shell: >
+        curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+      register: peco_latest_version
+
+    - name: Download latest peco
+      get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
+
+    - name: Extract peco
+      unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+
+    - name: Copy to /usr/bin/
+      copy: src=/tmp/peco_linux_amd64/peco dest=/usr/bin/ mode=0755
+      sudo: yes
+
