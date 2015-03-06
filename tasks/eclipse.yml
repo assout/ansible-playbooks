@@ -28,6 +28,14 @@
     -installIU com.mountainminds.eclemma.feature.feature.group \
     "
 
+  - name: eclipse | Install Eclipse CheckStyle Plugin
+    command: "eclipse -nosplash \
+    -application org.eclipse.equinox.p2.director \
+    -repository http://eclipse-cs.sf.net/update \
+    -installIU net.sf.eclipsecs.feature.group \
+    -installIU com.github.sevntu.checkstyle.checks.feature.feature.group \
+    "
+
   - name: eclipse | Install Eclipse Metrics Plugin(frank sauer)
     command: "eclipse -nosplash \
     -application org.eclipse.equinox.p2.director \
