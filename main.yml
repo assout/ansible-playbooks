@@ -2,22 +2,12 @@
 
 - hosts: localhost
   connection: local
-  tasks:
-    # TODO 順序性を無くしたい.
-    #
-    # これは最初にやらないと.
-    - include: tasks/yum.yml
-    # homeディレクトリの英語化を早めにやったほうがよい.
-    - include: tasks/gnome.yml
-    - include: tasks/git.yml
-    - include: tasks/vim.yml
+# TODO 順序性を無くしたい.
+# これは最初にやらないと.
+- include: tasks/yum.yml
+# homeディレクトリの英語化を早めにやったほうがよい.
+- include: tasks/gnome.yml
+- include: tasks/git.yml
+- include: tasks/vim.yml
+- include: tasks/eclipse.yml
 
-README.md
-ansible-directories.yml
-dropbox.repo
-git.yml
-gnome.yml
-main.yml
-vim.yml
-xmodmap.desktop
-yum.yml
