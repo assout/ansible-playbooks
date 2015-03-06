@@ -89,3 +89,5 @@
     -installIU net.sourceforge.vrapper.plugin.splitEditor.feature.group \
     -installIU net.sourceforge.vrapper.plugin.surround.feature.group \
     "
+    # TODO なぜかエラーになる
+    ignore_errors: True
