@@ -17,6 +17,7 @@
         - gvim
         # required logout/login
         - ibus-mozc
+        - man-pages-ja
         - python-pip
         - vim
         - wine 
