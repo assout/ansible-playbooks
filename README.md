@@ -5,8 +5,8 @@ ansible-playbooks for personal PC setup
 # How to run
 Clone from github
 
-	mkdir -p ~/development/
-	cd development
+	mkdir -p ~/Development/
+	cd Development
 	git clone git@github.com:assout/ansible-playbooks.git
 
 install ansible
