@@ -22,20 +22,20 @@
       failed_when: exit.rc not in [0, 1]
 
     - git: repo=git@github.com:assout/dotfiles.git
-           dest=/home/oji/development/dotfiles
+           dest=/home/oji/Development/dotfiles
            update=no
 
-    - command: /home/oji/development/dotfiles/dotfilesLink.sh
+    - command: /home/oji/Development/dotfiles/dotfilesLink.sh
 
     - git: repo=git@github.com:yascentur/RictyDiminished.git
-           dest=/home/oji/development/RictyDiminished
+           dest=/home/oji/Development/RictyDiminished
            update=no
 
     - copy: src={{ item }}
             dest=/usr/share/fonts/
             force=no
-      with_fileglob: /home/oji/development/RictyDiminished/*.ttf
+      with_fileglob: /home/oji/Development/RictyDiminished/*.ttf
       sudo: yes
 
     - git: repo=git@github.com:assout/unite-todo.git
-           dest=/home/oji/development/unite-todo
+           dest=/home/oji/Development/unite-todo
