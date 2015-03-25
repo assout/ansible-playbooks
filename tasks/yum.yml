@@ -10,8 +10,10 @@
     - yum: name={{ item }} state=latest
       with_items:
         - yum-plugin-fastestmirror
+        - byobu
         - dconf-editor
         - eclipse
+        - ftp
         - gcc
         - gnome-tweak-tool
         - gvim
@@ -60,8 +62,7 @@
       when: has_kindle.stat.md5 is not defined
 
     - name: Get latest peco version
-      shell: >
-        curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+      shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
       register: peco_latest_version
 
     - name: Download latest peco
@@ -72,4 +73,14 @@
 
     - name: Copy to /usr/bin/
       copy: src=/tmp/peco_linux_amd64/peco dest=/usr/bin/ mode=0755
+
+    - copy: src=files/fedora-calibre.repo dest=/etc/yum.repos.d/ follow=yes
+
+    - yum: name=calibre state=latest enablerepo=fedora-calibre
+
+    - copy: src=files/insync.repo dest=/etc/yum.repos.d/ follow=yes
+
+    - rpm_key: state=present key=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+
+    - yum: name=insync state=latest enablerepo=insync
 
