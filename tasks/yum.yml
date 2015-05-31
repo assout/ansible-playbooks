@@ -10,7 +10,9 @@
     - yum: name={{ item }} state=latest
       with_items:
         - yum-plugin-fastestmirror
+        - apvlv
         - byobu
+        - cadaver # WevDAV client
         - dconf-editor
         - eclipse
         - ftp
@@ -20,9 +22,10 @@
         # required logout/login
         - ibus-mozc
         - man-pages-ja
+        - nkf
         - python-pip
         - vim
-        - wine 
+        - wine
         - xclip
         # for vim-plugin im_control.
         - xvkbd
@@ -61,6 +64,16 @@
     - command: wine KindleForPC-installer.exe
       when: has_kindle.stat.md5 is not defined
 
+    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+      register: has_itunes
+
+    - name: get kindle for pc for wine
+      get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
+      when: has_itunes.stat.md5 is not defined
+
+    - command: wine KindleForPC-installer.exe
+      when: has_itunes.stat.md5 is not defined
+
     - name: Get latest peco version
       shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
       register: peco_latest_version
@@ -84,3 +97,5 @@
 
     - yum: name=insync state=latest enablerepo=insync
 
+    - name: Download latest peco
+      get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
