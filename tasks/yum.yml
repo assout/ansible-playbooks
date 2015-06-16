@@ -13,6 +13,8 @@
         - apvlv
         - byobu
         - cadaver # WevDAV client
+        - cmigemo
+        - ctags
         - dconf-editor
         - eclipse
         - ftp
