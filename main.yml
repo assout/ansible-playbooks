@@ -5,6 +5,7 @@
 # TODO 順序性を無くしたい.
 # これは最初にやらないと.
 - include: tasks/yum.yml
+- include: tasks/make.yml
 # homeディレクトリの英語化を早めにやったほうがよい.
 - include: tasks/gnome.yml
 - include: tasks/git.yml

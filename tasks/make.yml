@@ -1,0 +1,23 @@
+---
+# ref [Ansible、ソースインストールする際のPalybookの書き方 - Goldstine研究所](http://mosuke5.hateblo.jp/entry/2014/11/16/153223)
+- hosts: localhost
+  connection: local
+  sudo: yes
+
+  vars:
+    src_dir: /usr/local/src
+    bin_dir: /usr/local/bin
+    ttyrec_ver: "ttyrec-1.0.8"
+  tasks:
+
+    # - command: which ttyrec
+    - get_url: url="http://0xcc.net/ttyrec/{{ttyrec_ver}}.tar.gz" dest=/tmp
+    - unarchive: src=/tmp/{{ttyrec_ver}}.tar.gz dest={{src_dir}}
+    - get_url: url="http://paperlined.org/apps/rhel/building/ttyrec-1.0.8.RHEL5.patch" dest={{src_dir}}/{{ttyrec_ver}}
+    - patch: src={{src_dir}}/{{ttyrec_ver}}/{{ttyrec_ver}}.RHEL5.patch basedir={{src_dir}}/{{ttyrec_ver}} strip=1 # refs: <https://github.com/mjording/ttyrec/issues/3>
+    - command: chdir={{src_dir}}/{{ttyrec_ver}} make
+    - copy: src={{src_dir}}/{{ttyrec_ver}}/{{ item.bin }} dest={{bin_dir}}/{{ item.bin }} mode=755
+      with_items:
+        - { bin: 'ttyrec' }
+        - { bin: 'ttyplay' }
+        - { bin: 'ttytime' }
