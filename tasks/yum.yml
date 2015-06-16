@@ -47,7 +47,7 @@
 
     - yum: name=chromium state=latest
 
-    - yum: name=https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm state=present
+    # - yum: name=https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm state=present
 
     - copy: src=files/dropbox.repo dest=/etc/yum.repos.d/ follow=yes
 
