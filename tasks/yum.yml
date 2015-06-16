@@ -63,8 +63,9 @@
       get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
       when: has_kindle.stat.md5 is not defined
 
-    - command: wine KindleForPC-installer.exe
+    - command: wine /tmp/KindleForPC-installer.exe
       when: has_kindle.stat.md5 is not defined
+      sudo: no
 
     - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
       register: has_licecap
