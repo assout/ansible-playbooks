@@ -3,36 +3,47 @@
 - hosts: localhost
   connection: local
   sudo: yes
-
   vars:
     src_dir: /usr/local/src
     bin_dir: /usr/local/bin
     ttyrec_ver: "ttyrec-1.0.8"
     seq2gif_ver: "0.10.3"
   tasks:
-    - shell: which ttyrec
-      register: exit
-      failed_when: exit.rc == 0
+    - debug: msg="install ttyrec"
+    - command: which ttyrec
+      register: has_ttyrec
+      ignore_errors: yes
       sudo: no
     - get_url: url="http://0xcc.net/ttyrec/{{ttyrec_ver}}.tar.gz" dest=/tmp
+      when: has_ttyrec != 0
     - unarchive: src=/tmp/{{ttyrec_ver}}.tar.gz dest={{src_dir}}
+      when: has_ttyrec != 0
     - get_url: url="http://paperlined.org/apps/rhel/building/ttyrec-1.0.8.RHEL5.patch" dest={{src_dir}}/{{ttyrec_ver}}
+      when: has_ttyrec != 0
     - patch: src={{src_dir}}/{{ttyrec_ver}}/{{ttyrec_ver}}.RHEL5.patch basedir={{src_dir}}/{{ttyrec_ver}} strip=1 # refs: <https://github.com/mjording/ttyrec/issues/3>
+      when: has_ttyrec != 0
     - command: chdir={{src_dir}}/{{ttyrec_ver}} make
+      when: has_ttyrec != 0
     - copy: src={{src_dir}}/{{ttyrec_ver}}/{{ item.bin }} dest={{bin_dir}}/{{ item.bin }} mode=755
       with_items:
         - { bin: 'ttyrec' }
         - { bin: 'ttyplay' }
         - { bin: 'ttytime' }
+      when: has_ttyrec != 0
 
-    - shell: which seq2gif
-      register: exit
-      failed_when: exit.rc == 0
+    - debug: msg="install seq2gif"
+    - command: which seq2gif
+      register: has_seq2gif
       sudo: no
     - get_url: url="https://github.com/saitoha/seq2gif/archive/v{{seq2gif_ver}}.tar.gz" dest=/tmp
+      when: has_seq2gif != 0
     - unarchive: src=/tmp/seq2gif-{{seq2gif_ver}}.tar.gz dest={{src_dir}}
+      when: has_seq2gif != 0
     - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} ./configure
+      when: has_seq2gif != 0
     - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} make
+      when: has_seq2gif != 0
     - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} make install
+      when: has_seq2gif != 0
 
 
