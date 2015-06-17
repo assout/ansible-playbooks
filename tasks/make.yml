@@ -8,9 +8,12 @@
     src_dir: /usr/local/src
     bin_dir: /usr/local/bin
     ttyrec_ver: "ttyrec-1.0.8"
+    seq2gif_ver: "0.10.3"
   tasks:
-
-    # - command: which ttyrec
+    - shell: which ttyrec
+      register: exit
+      failed_when: exit.rc == 0
+      sudo: no
     - get_url: url="http://0xcc.net/ttyrec/{{ttyrec_ver}}.tar.gz" dest=/tmp
     - unarchive: src=/tmp/{{ttyrec_ver}}.tar.gz dest={{src_dir}}
     - get_url: url="http://paperlined.org/apps/rhel/building/ttyrec-1.0.8.RHEL5.patch" dest={{src_dir}}/{{ttyrec_ver}}
@@ -21,3 +24,15 @@
         - { bin: 'ttyrec' }
         - { bin: 'ttyplay' }
         - { bin: 'ttytime' }
+
+    - shell: which seq2gif
+      register: exit
+      failed_when: exit.rc == 0
+      sudo: no
+    - get_url: url="https://github.com/saitoha/seq2gif/archive/v{{seq2gif_ver}}.tar.gz" dest=/tmp
+    - unarchive: src=/tmp/seq2gif-{{seq2gif_ver}}.tar.gz dest={{src_dir}}
+    - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} ./configure
+    - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} make
+    - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} make install
+
+
