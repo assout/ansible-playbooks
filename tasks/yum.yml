@@ -4,6 +4,7 @@
   connection: local
   sudo: yes
   vars:
+    src_dir: /usr/local/src
     bin_dir: /usr/local/bin
   tasks:
     - name: upgrade all packages
@@ -25,16 +26,15 @@
         - go # for ttyrec2gif
         - gvim
         - hg # for ttyrec2gif
-        # required logout/login
-        - ibus-mozc
+        - ibus-mozc # required logout/login
         - man-pages-ja
         - nkf
         - python-pip
         - vim
         - wine
         - xclip
-        # for vim-plugin im_control.
-        - xvkbd
+        - xvkbd # for vim-plugin im_control.
+        - xwd # for ttygif
 
     - debug: msg="install dropbox"
     - copy: src=files/dropbox.repo dest=/etc/yum.repos.d/ follow=yes
@@ -90,8 +90,20 @@
       when: has_peco.rc != 0
     - unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
       when: has_peco.rc != 0
-    - copy: src=/tmp/peco_linux_amd64/peco dest={{bin_dir}} mode=0755
+    - copy: src=/tmp/peco_linux_amd64/peco dest={{ bin_dir }} mode=0755
       when: has_peco.rc != 0
+
+    - debug: msg="install ttygif"
+    - command: which ttygif
+      register: has_ttygif
+      ignore_errors: yes
+      sudo: no
+    - get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
+      when: has_ttygif.rc != 0
+    - unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ src_dir }}
+      when: has_ttygif.rc != 0
+    - copy: src={{ src_dir }}/ttygif_linux_amd64/ttygif dest={{ bin_dir }} mode=0755
+      when: has_ttygif.rc != 0
 
     - pip: name=vim-vint
 
