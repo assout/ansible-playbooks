@@ -20,7 +20,9 @@
         - ftp
         - gcc
         - gnome-tweak-tool
+        - go # for ttyrec2gif
         - gvim
+        - hg # for ttyrec2gif
         # required logout/login
         - ibus-mozc
         - man-pages-ja
@@ -32,12 +34,7 @@
         # for vim-plugin im_control.
         - xvkbd
 
-    - command: which vint
-      register: has_vint
-      ignore_errors: yes
-
-    - command: pip install vim-vint
-      when : has_vint.rc == 1
+    - pip: name vim-vint
 
     - name: get chromium repo
       get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/fedora-chromium-stable.repo dest=/etc/yum.repos.d/
