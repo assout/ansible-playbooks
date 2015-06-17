@@ -3,6 +3,8 @@
 - hosts: localhost
   connection: local
   sudo: yes
+  vars:
+    bin_dir: /usr/local/bin
   tasks:
     - name: upgrade all packages
       yum: name=* state=latest disablerepo=fedora-chromium-stable,google-chrome
@@ -34,69 +36,62 @@
         # for vim-plugin im_control.
         - xvkbd
 
-    - pip: name vim-vint
-
-    - name: get chromium repo
-      get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/fedora-chromium-stable.repo dest=/etc/yum.repos.d/
-
-    - name: get chromium repo pgp
-      get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/spot.gpg dest=/etc/pki/rpm-gpg/spot.gpg
-
-    - yum: name=chromium state=latest
-
-    # - yum: name=https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm state=present
-
+    - debug: msg="install dropbox"
     - copy: src=files/dropbox.repo dest=/etc/yum.repos.d/ follow=yes
-
-    # required manual setup
     - yum: name=nautilus-dropbox state=latest enablerepo=Dropbox
-
     - command: dropbox
 
-    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
-      register: has_kindle
-
-    - name: get kindle for pc for wine
-      get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
-      when: has_kindle.stat.md5 is not defined
-
-    - command: wine /tmp/KindleForPC-installer.exe
-      when: has_kindle.stat.md5 is not defined
-      sudo: no
-
-    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
-      register: has_licecap
-
-    - name: get licecap for wine
-      get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
-      when: has_licecap.stat.md5 is not defined
-
-    - command: wine /tmp/licecap125-install.exe
-      when: has_licecap.stat.md5 is not defined
-      sudo: no
-
-    - name: Get latest peco version
-      shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
-      register: peco_latest_version
-
-    - name: Download latest peco
-      get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
-
-    - name: Extract peco
-      unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
-
-    - name: Copy to /usr/bin/
-      copy: src=/tmp/peco_linux_amd64/peco dest=/usr/bin/ mode=0755
-
-    - copy: src=files/fedora-calibre.repo dest=/etc/yum.repos.d/ follow=yes
-
-    - yum: name=calibre state=latest enablerepo=fedora-calibre
-
+    - debug: msg="install insync"
     - copy: src=files/insync.repo dest=/etc/yum.repos.d/ follow=yes
-
     - rpm_key: state=present key=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
-
     - yum: name=insync state=latest enablerepo=insync
 
-    - name: Download latest peco
-      get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
+    - debug: msg="install calibre"
+    - copy: src=files/fedora-calibre.repo dest=/etc/yum.repos.d/ follow=yes
+    - yum: name=calibre state=latest enablerepo=fedora-calibre
+
+    - debug: msg="install chormium"
+    - command: which chromium-browser
+      register: has_chromium
+      ignore_errors: yes
+    - get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/fedora-chromium-stable.repo dest=/etc/yum.repos.d/
+      when: has_chromium.rc != 0
+    - get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/spot.gpg dest=/etc/pki/rpm-gpg/spot.gpg
+      when: has_chromium.rc != 0
+    - yum: name=chromium state=latest
+
+    - debug: msg="install kindle by wine"
+    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+      register: has_kindle
+    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
+      when: has_kindle.stat.exists == False
+    - command: wine /tmp/KindleForPC-installer.exe
+      when: has_kindle.stat.exists == False
+      sudo: no
+
+    - debug: msg="install licecap by wine"
+    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
+      register: has_licecap
+    - get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
+      when: has_licecap.stat.exists == False
+    - command: wine /tmp/licecap125-install.exe
+      when: has_licecap.stat.exists == False
+      sudo: no
+
+    - debug: msg="install peco"
+    - command: which peco
+      register: has_peco
+      ignore_errors: yes
+      sudo: no
+    - shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+      register: peco_latest_version
+      when: has_peco.rc != 0
+    - get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
+      when: has_peco.rc != 0
+    - unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+      when: has_peco.rc != 0
+    - copy: src=/tmp/peco_linux_amd64/peco dest={{bin_dir}} mode=0755
+      when: has_peco.rc != 0
+
+    - pip: name=vim-vint
+
