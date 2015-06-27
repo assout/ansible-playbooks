@@ -31,6 +31,7 @@
         - nkf
         - python-pip
         - vim
+        - w3m # for vim-plugin vim-ref
         - wine
         - xclip
         - xvkbd # for vim-plugin im_control.
