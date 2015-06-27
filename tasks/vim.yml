@@ -16,3 +16,10 @@
 
     - shell: echo "let g:hateblo_api_key='{{ hateblo_api_key }}'" > /home/oji/.vimrc.local
       when: hateblo_api_key != ''
+
+    - get_url: url="http://www.namazu.org/~tsuchiya/sdic/data/gene95.tar.gz" dest=/tmp
+    - file: path=/home/oji/.vim/dict state=directory
+      sudo: no
+    - unarchive: src=/tmp/gene95.tar.gz dest=/home/oji/.vim/dict/
+    - shell: nkf -Sw -Lu -m0 --in-place /home/oji/.vim/dict/gene.txt
+
