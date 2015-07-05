@@ -22,6 +22,7 @@
         - eclipse
         - ftp
         - gcc
+        - gftp
         - gnome-tweak-tool
         - go # for ttyrec2gif
         - gvim
