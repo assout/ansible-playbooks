@@ -1,0 +1,61 @@
+---
+
+- hosts: localhost
+  connection: local
+  sudo: yes
+  vars:
+    src_dir: /usr/local/src
+    bin_dir: /usr/local/bin
+  tasks:
+    - debug: msg="install kindle by wine"
+    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+      register: has_kindle
+    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
+      when: has_kindle.stat.exists == False
+    - command: wine /tmp/KindleForPC-installer.exe
+      when: has_kindle.stat.exists == False
+      sudo: no
+
+    - debug: msg="install licecap by wine"
+    - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
+      register: has_licecap
+    - get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
+      when: has_licecap.stat.exists == False
+    - command: wine /tmp/licecap125-install.exe
+      when: has_licecap.stat.exists == False
+      sudo: no
+
+    - debug: msg="install peco"
+    - command: which peco
+      register: has_peco
+      ignore_errors: yes
+      sudo: no
+    - shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+      register: peco_latest_version
+      when: has_peco.rc != 0
+    - get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
+      when: has_peco.rc != 0
+    - unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+      when: has_peco.rc != 0
+    - copy: src=/tmp/peco_linux_amd64/peco dest={{ bin_dir }} mode=0755
+      when: has_peco.rc != 0
+
+    - debug: msg="install ttygif"
+    - command: which ttygif
+      register: has_ttygif
+      ignore_errors: yes
+      sudo: no
+    - get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
+      when: has_ttygif.rc != 0
+    - unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ src_dir }}
+      when: has_ttygif.rc != 0
+    - copy: src={{ src_dir }}/ttygif_linux_amd64/ttygif dest={{ bin_dir }} mode=0755
+      when: has_ttygif.rc != 0
+
+    - pip: name=vim-vint
+
+    - debug: msg="install gvm"
+    - shell: curl -s get.gvmtool.net | bash
+      sudo: no
+    - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle 2.4
+      sudo: no
