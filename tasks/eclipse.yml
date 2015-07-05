@@ -1,6 +1,7 @@
 ---
 
 # TODO ハードコード
+# TODO gradle IDE
 
 -
   hosts: localhost
@@ -91,3 +92,4 @@
     "
     # TODO なぜかエラーになる
     ignore_errors: True
+
