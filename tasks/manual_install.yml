@@ -57,5 +57,5 @@
     - debug: msg="install gvm"
     - shell: curl -s get.gvmtool.net | bash
       sudo: no
-    - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle 2.4
+    - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle
       sudo: no
