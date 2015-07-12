@@ -26,6 +26,7 @@
         - hg # for ttyrec2gif
         - ibus-mozc # required logout/login
         - man-pages-ja
+        - maven
         - nkf
         - python-pip
         - vim
