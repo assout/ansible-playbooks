@@ -54,6 +54,8 @@
 
     - pip: name=vim-vint
 
+    - pip: name=ansible-lint
+
     - debug: msg="install gvm"
     - shell: curl -s get.gvmtool.net | bash
       sudo: no
