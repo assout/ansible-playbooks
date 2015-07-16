@@ -33,6 +33,8 @@
     - shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
       register: peco_latest_version
       when: has_peco.rc != 0
+      tags:
+        - skip_ansible_lint
     - get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
       when: has_peco.rc != 0
     - unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
@@ -59,5 +61,7 @@
     - debug: msg="install gvm"
     - shell: curl -s get.gvmtool.net | bash
       sudo: no
+      tags:
+        - skip_ansible_lint
     - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle
       sudo: no
