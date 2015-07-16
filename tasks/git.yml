@@ -11,7 +11,7 @@
     - user: name=oji generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
       when : exit.rc not in [0, 1]
 
-    - shell: cat /home/oji/ssh/id_rsa.pub | /usr/bin/xclip -sel clip
+    - shell: cat /home/oji/.ssh/id_rsa.pub | /usr/bin/xclip -sel clip
       when : exit.rc not in [0, 1]
 
     - pause: prompt="clipboard value to github.(https://github.com/settings/ssh)"
