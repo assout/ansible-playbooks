@@ -5,8 +5,8 @@
   connection: local
   vars:
     devDir: /home/oji/Development
-    thirdDir: {{ devDir }}/third-party
-    vimDir: {{ devDir }}/vim-plugins
+    thirdDir: "{{ devDir }}/third-party"
+    vimDir: "{{ devDir }}/vim-plugins"
   tasks:
     - command: ssh -T git@github.com
       register: exit
@@ -30,7 +30,7 @@
            dest={{ devDir }}/dotfiles
            update=no
 
-    - command: {{ devDir }}/dotfiles/dotfilesLink.sh
+    - command: "{{ devDir }}/dotfiles/dotfilesLink.sh"
 
     - git: repo=git@github.com:yascentur/RictyDiminished.git
            version=master
@@ -40,9 +40,10 @@
     - copy: src={{ item }}
             dest=/usr/share/fonts/
             force=no
-      with_fileglob: {{ thirdDir }}/RictyDiminished/*.ttf
+      with_fileglob: "{{ thirdDir }}/RictyDiminished/*.ttf"
       sudo: yes
 
     - git: repo=git@github.com:assout/unite-todo.git
            version=master
            dest={{ vimDir }}/unite-todo
+           update=no
