@@ -1,4 +1,4 @@
-ansible-playbooks
+ansible-playbooks [![Build Status](https://travis-ci.org/assout/ansible-playbooks.svg?branch=master)](https://travis-ci.org/assout/ansible-playbooks)
 ========
 ansible-playbooks for personal PC setup
 
