@@ -3,6 +3,8 @@
 # TODO ハードコード
 # TODO gradle IDE
 # TODO markdown editor
+# TODO PMD
+# TODO FindBugs
 
 -
   hosts: localhost
