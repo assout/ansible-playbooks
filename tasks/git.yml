@@ -22,12 +22,14 @@
       failed_when: exit.rc not in [0, 1]
 
     - git: repo=git@github.com:assout/dotfiles.git
+           version=master
            dest=/home/oji/Development/dotfiles
            update=no
 
     - command: /home/oji/Development/dotfiles/dotfilesLink.sh
 
     - git: repo=git@github.com:yascentur/RictyDiminished.git
+           version=master
            dest=/home/oji/Development/RictyDiminished
            update=no
 
@@ -38,4 +40,5 @@
       sudo: yes
 
     - git: repo=git@github.com:assout/unite-todo.git
+           version=master
            dest=/home/oji/Development/unite-todo
