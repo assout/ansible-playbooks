@@ -3,6 +3,10 @@
 # TODO git repo destでローカルの変更がうわがかれるのを阻止したい.
 - hosts: localhost
   connection: local
+  vars:
+    devDir: /home/oji/Development
+    thirdDir: {{ devDir }}/third-party
+    vimDir: {{ devDir }}/vim-plugins
   tasks:
     - command: ssh -T git@github.com
       register: exit
@@ -23,22 +27,22 @@
 
     - git: repo=git@github.com:assout/dotfiles.git
            version=master
-           dest=/home/oji/Development/dotfiles
+           dest={{ devDir }}/dotfiles
            update=no
 
-    - command: /home/oji/Development/dotfiles/dotfilesLink.sh
+    - command: {{ devDir }}/dotfiles/dotfilesLink.sh
 
     - git: repo=git@github.com:yascentur/RictyDiminished.git
            version=master
-           dest=/home/oji/Development/RictyDiminished
+           dest={{ thirdDir }}/RictyDiminished
            update=no
 
     - copy: src={{ item }}
             dest=/usr/share/fonts/
             force=no
-      with_fileglob: /home/oji/Development/RictyDiminished/*.ttf
+      with_fileglob: {{ thirdDir }}/RictyDiminished/*.ttf
       sudo: yes
 
     - git: repo=git@github.com:assout/unite-todo.git
            version=master
-           dest=/home/oji/Development/unite-todo
+           dest={{ vimDir }}/unite-todo
