@@ -32,6 +32,7 @@
         - maven
         - nkf
         - pandoc
+        - plantuml
         - python-pip
         - strace
         - vim
