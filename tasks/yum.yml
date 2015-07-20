@@ -71,3 +71,13 @@
       when: has_screenkey.rc != 0
     - yum: name=screenkey state=latest
 
+    - debug: msg="install playonlinux"
+    - command: which playonlinux
+      register: has_playonlinux
+      ignore_errors: yes
+      sudo: no
+    - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest=/etc/yum.repos.d/
+      when: has_playonlinux.rc != 0
+    - yum: name=playonlinux state=latest
+
+
