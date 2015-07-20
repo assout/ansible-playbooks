@@ -62,6 +62,14 @@
     - get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
       when: has_winetricks.rc != 0
 
+    - debug: msg="install playonlinux"
+    - command: which playonlinux
+      register: has_playonlinux
+      ignore_errors: yes
+      sudo: no
+    - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest={{ bin_dir }} mode=0755
+      when: has_winetricks.rc != 0
+
     - pip: name=vim-vint
 
     - pip: name=ansible-lint
