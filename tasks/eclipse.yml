@@ -5,6 +5,7 @@
 # TODO markdown editor
 # TODO PMD
 # TODO FindBugs
+# TODO Terminal plugin
 
 -
   hosts: localhost
