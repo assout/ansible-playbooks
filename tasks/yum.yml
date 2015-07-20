@@ -31,6 +31,7 @@
         - man-pages-ja
         - maven
         - nkf
+        - pandoc
         - python-pip
         - strace
         - vim
