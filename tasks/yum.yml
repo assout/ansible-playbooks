@@ -3,6 +3,8 @@
 - hosts: localhost
   connection: local
   sudo: yes
+  vars:
+    fedora_version: 21
   tasks:
     - name: upgrade all packages
       yum: name=* state=latest disablerepo=fedora-chromium-stable,google-chrome
@@ -10,8 +12,8 @@
     - yum: name={{ item }} state=latest
       with_items:
         - yum-plugin-fastestmirror
-        - apvlv
-        - byobu
+        - apvlv # pdf viewer
+        - byobu # tmux/GNU screen wrapper
         - cadaver # WevDAV client
         - cmigemo
         - ctags
@@ -19,12 +21,13 @@
         - eclipse
         - ftp
         - gcc
-        - gftp
+        - gftp # ftp client
         - gnome-tweak-tool
-        - go # for ttyrec2gif
+        - go
         - gvim
         - hg # for ttyrec2gif
         - ibus-mozc # required logout/login
+        - key-mon # screen key input
         - man-pages-ja
         - maven
         - nkf
@@ -58,5 +61,13 @@
       when: has_chromium.rc != 0
     - get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/spot.gpg dest=/etc/pki/rpm-gpg/spot.gpg
       when: has_chromium.rc != 0
-    - yum: name=chromium state=latest
+    - yum: name=chromium state=latesta
+
+    - debug: msg="install screenkey" # screen key input
+    - command: which screenkey
+      register: has_screenkey
+      ignore_errors: yes
+    - get_url: url=http://download.opensuse.org/repositories/home:Kenzy:packages/Fedora_{{ fedora_version }}/home:Kenzy:packages.repo dest=/etc/yum.repos.d/
+      when: has_screenkey.rc != 0
+    - yum: name=screenkey state=latest
 
