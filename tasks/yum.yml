@@ -32,6 +32,7 @@
         - maven
         - nkf
         - python-pip
+        - strace
         - vim
         - w3m # for vim-plugin vim-ref
         - wine
