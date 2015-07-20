@@ -7,14 +7,6 @@
     src_dir: /usr/local/src
     bin_dir: /usr/local/bin
   tasks:
-    - debug: msg="install winetricks"
-    - command: which winetricks
-      register: has_winetricks
-      ignore_errors: yes
-      sudo: no
-    - get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
-      when: has_winetricks.rc != 0
-
     - debug: msg="install kindle by wine"
     - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
       register: has_kindle
@@ -61,6 +53,14 @@
       when: has_ttygif.rc != 0
     - copy: src={{ src_dir }}/ttygif_linux_amd64/ttygif dest={{ bin_dir }} mode=0755
       when: has_ttygif.rc != 0
+
+    - debug: msg="install winetricks"
+    - command: which winetricks
+      register: has_winetricks
+      ignore_errors: yes
+      sudo: no
+    - get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
+      when: has_winetricks.rc != 0
 
     - pip: name=vim-vint
 
