@@ -1,0 +1,6 @@
+[rpm-sphere]
+name=RPM Sphere
+baseurl=http://download.opensuse.org/repositories/home:/zhonghuaren/Fedora_22/
+gpgkey=http://download.opensuse.org/repositories/home:/zhonghuaren/Fedora_22/repodata/repomd.xml.key
+enabled=0
+gpgcheck=1

@@ -70,10 +70,6 @@
     - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest={{ bin_dir }} mode=0755
       when: has_playonlinux.rc != 0
 
-    - pip: name=vim-vint
-
-    - pip: name=ansible-lint
-
     - debug: msg="install gvm"
     - shell: curl -s get.gvmtool.net | bash
       sudo: no

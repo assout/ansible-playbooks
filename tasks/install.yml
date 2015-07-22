@@ -86,4 +86,6 @@
       when: has_playonlinux.rc != 0
     - yum: name=playonlinux state=latest
 
+    - pip: name=vim-vint
+    - pip: name=ansible-lint
 
