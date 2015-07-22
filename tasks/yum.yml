@@ -36,7 +36,8 @@
         - plantuml
         - python-pip
         - shcov
-        - strace
+        - shunit2
+        - strape
         - vim
         - w3m # for vim-plugin vim-ref
         - wine
