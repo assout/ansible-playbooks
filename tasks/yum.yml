@@ -35,6 +35,7 @@
         - pandoc
         - plantuml
         - python-pip
+        - shcov
         - strace
         - vim
         - w3m # for vim-plugin vim-ref
