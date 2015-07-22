@@ -82,6 +82,6 @@
     - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle
       sudo: no
 
-    # - debug: msg="install shunit2"
-    # - get_url: url=https://shunit2.googlecode.com/files/shunit2-2.1.6.tgz dest=/tmp
-    # - unarchive: src=/tmp/shunit2-2.1.6.tgz dest={{ src_dir }}
+    - debug: msg="install shunit2"
+    - get_url: url=https://shunit2.googlecode.com/files/shunit2-2.1.6.tgz dest=/tmp
+    - unarchive: src=/tmp/shunit2-2.1.6.tgz dest={{ src_dir }}
