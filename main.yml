@@ -12,4 +12,5 @@
 - include: tasks/git.yml
 - include: tasks/vim.yml
 - include: tasks/eclipse.yml
+- include: tasks/other.yml
 

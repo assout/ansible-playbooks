@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  connection: local
+  vars_prompt:
+    - name: "wunderClientId"
+      prompt: "wunderline client id (https://developer.wunderlist.com/apps/)"
+    - name: "wunderAccessToken"
+      prompt: "wunderline access token (https://developer.wunderlist.com/apps/)"
+  tasks:
+    - debug: msg="setting wunderline"
+    - stat: path="/home/oji/.wunderlinerc"
+      register: has_wunderline
+    - copy: src=files/.wunderlinerc dest=/home/oji/ follow=yes
+      when: has_wunderline.stat.exists == False
+    - replace: dest=/home/oji/.wunderlinerc regexp='__clientId__' replace={{ wunderClientId }}
+      when: has_wunderline.stat.exists == False
+    - replace: dest=/home/oji/.wunderlinerc regexp='__accessToken__' replace={{ wunderAccessToken }}
+      when: has_wunderline.stat.exists == False
