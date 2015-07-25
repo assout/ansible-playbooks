@@ -93,3 +93,5 @@
     - pip: name=vim-vint
     - pip: name=ansible-lint
 
+    - npm: name=wunderline global=yes
+
