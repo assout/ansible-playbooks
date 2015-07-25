@@ -65,9 +65,10 @@
       ignore_errors: yes
     - get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/fedora-chromium-stable.repo dest=/etc/yum.repos.d/
       when: has_chromium.rc != 0
+    - replace: dest=/etc/yum.repos.d/fedora-chromium-stable.repo regexp='enable=1' replace='enable=0'
     - get_url: url=http://repos.fedorapeople.org/repos/spot/chromium-stable/spot.gpg dest=/etc/pki/rpm-gpg/spot.gpg
       when: has_chromium.rc != 0
-    - yum: name=chromium state=latesta
+    - yum: name=chromium state=latest enablerepo=fedora-chromium-stable
 
     - debug: msg="install screenkey" # screen key input
     - command: which screenkey
@@ -75,7 +76,8 @@
       ignore_errors: yes
     - get_url: url=http://download.opensuse.org/repositories/home:Kenzy:packages/Fedora_{{ fedora_version }}/home:Kenzy:packages.repo dest=/etc/yum.repos.d/
       when: has_screenkey.rc != 0
-    - yum: name=screenkey state=latest
+    - replace: dest=/etc/yum.repos.d/home:Kenzy:packages.repo regexp='enable=1' replace='enable=0'
+    - yum: name=screenkey state=latest enablerepo=home_Kenzy_packages
 
     - debug: msg="install playonlinux"
     - command: which playonlinux
@@ -84,7 +86,8 @@
       sudo: no
     - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest=/etc/yum.repos.d/
       when: has_playonlinux.rc != 0
-    - yum: name=playonlinux state=latest
+    - replace: dest=/etc/yum.repos.d/playonlinux.repo regexp='enable=1' replace='enable=0'
+    - yum: name=playonlinux state=latest enablerepo=playonlinux
 
     - pip: name=vim-vint
     - pip: name=ansible-lint
