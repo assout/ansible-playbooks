@@ -91,9 +91,3 @@
     - replace: dest=/etc/yum.repos.d/playonlinux.repo regexp='enable=1' replace='enable=0'
     - yum: name=playonlinux state=latest enablerepo=playonlinux
 
-    - pip: name=vim-vint
-    - pip: name=ansible-lint
-
-    - npm: name=wunderline global=yes
-    - npm: name=ttystudio global=yes
-

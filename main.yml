@@ -4,9 +4,10 @@
   connection: local
 # TODO 順序性を無くしたい.
 # これは最初にやらないと.
-- include: tasks/install.yml # yum, pip
-- include: tasks/manual_install.yml
-- include: tasks/make.yml
+- include: tasks/install_yum.yml
+- include: tasks/install_manual.yml
+- include: tasks/install_make.yml
+- include: tasks/install_other.yml
 # homeディレクトリの英語化を早めにやったほうがよい.
 - include: tasks/gnome.yml
 - include: tasks/git.yml

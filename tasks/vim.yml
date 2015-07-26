@@ -5,21 +5,16 @@
   vars_prompt:
     - name: "hateblo_api_key"
       prompt: "Please enter your hateblo-apikey. see http://blog.hatena.ne.jp/assout/assout.hatenablog.com/config/detail"
-      private: no
-
   tasks:
-    - git: repo=git@github.com:Shougo/neobundle.vim version=master dest=/home/oji/.vim/bundle/neobundle.vim
+    - git: repo=git@github.com:Shougo/neobundle.vim version=master dest=~/.vim/bundle/neobundle.vim
+    - command: ~/.vim/bundle/neobundle.vim/bin/neoinstall
 
-    - command: /home/oji/.vim/bundle/neobundle.vim/bin/neoinstall
-
-    - file: path=/home/oji/.cache/hateblo/blog state=directory
-
-    - shell: echo "let g:hateblo_api_key='{{ hateblo_api_key }}'" > /home/oji/.vimrc.local
+    - file: path=~/.cache/hateblo/blog state=directory
+    - shell: echo "let g:hateblo_api_key='{{ hateblo_api_key }}'" > ~/.vimrc.local
       when: hateblo_api_key != ''
 
     - get_url: url="http://www.namazu.org/~tsuchiya/sdic/data/gene95.tar.gz" dest=/tmp
-    - file: path=/home/oji/.vim/dict state=directory
-      sudo: no
-    - unarchive: src=/tmp/gene95.tar.gz dest=/home/oji/.vim/dict/
-    - shell: nkf -Sw -Lu -m0 --in-place /home/oji/.vim/dict/gene.txt
+    - file: path=~/.vim/dict state=directory
+    - unarchive: src=/tmp/gene95.tar.gz dest=~/.vim/dict/
+    - shell: nkf -Sw -Lu -m0 --in-place ~/.vim/dict/gene.txt
 

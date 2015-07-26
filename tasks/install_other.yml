@@ -1,0 +1,52 @@
+---
+
+- hosts: localhost
+  connection: local
+  tasks:
+    - pip: name=vim-vint
+    - pip: name=ansible-lint
+
+    - npm: name=wunderline global=yes
+    - npm: name=ttystudio global=yes
+
+    - debug: msg="install kindle by wine"
+    - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+      register: has_kindle
+    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
+      when: has_kindle.stat.exists == False
+    - command: wine /tmp/KindleForPC-installer.exe
+      when: has_kindle.stat.exists == False
+
+    - debug: msg="install licecap by wine"
+    - stat: path="~/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
+      register: has_licecap
+    - get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
+      when: has_licecap.stat.exists == False
+    - command: wine /tmp/licecap125-install.exe
+      when: has_licecap.stat.exists == False
+
+    - debug: msg="install gvm" # for gradle
+    - command: which gvm
+      register: has_gvm
+      ignore_errors: yes
+    - shell: curl -s get.gvmtool.net | bash
+      when: has_gvm.rc != 0 tags:
+        - skip_ansible_lint
+
+    - debug: msg="install gradle"
+    - command: which gradle
+      register: has_gradle
+      ignore_errors: yes
+    - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle
+      when: has_gradle.rc != 0
+
+    - debug: msg="update cabal"
+    - command: cabal update
+
+    - debug: msg="install shellcheck"
+    - command: which shellcheck
+      register: has_shellcheck
+      ignore_errors: yes
+    - command: cabal install shellcheck
+      when: has_shellcheck.rc != 0
+
