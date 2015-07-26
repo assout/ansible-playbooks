@@ -34,6 +34,7 @@
     - debug: msg="install seq2gif"
     - command: which seq2gif
       register: has_seq2gif
+      ignore_errors: yes
       sudo: no
     - get_url: url="https://github.com/saitoha/seq2gif/archive/v{{seq2gif_ver}}.tar.gz" dest=/tmp
       when: has_seq2gif != 0
@@ -45,5 +46,4 @@
       when: has_seq2gif != 0
     - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} make install
       when: has_seq2gif != 0
-
 
