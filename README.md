@@ -15,5 +15,5 @@ install ansible
 
 run ansible
 
-	ansible-playbook main.yml -K
+	ansible-playbook main.yml -Kv
 

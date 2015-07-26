@@ -17,6 +17,7 @@
         - cmigemo
         - ctags
         - dconf-editor
+        - devscripts-minimal # for checkbahisms
         - eclipse
         - ftp
         - gcc
@@ -37,7 +38,7 @@
         - python-pip
         - shcov
         - shunit2
-        - strape
+        - strace
         - vim
         - w3m # for vim-plugin vim-ref
         - wine
