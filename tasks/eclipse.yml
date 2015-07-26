@@ -6,6 +6,7 @@
 # TODO PMD
 # TODO FindBugs
 # TODO Terminal plugin
+# TODO stepcounter
 
 -
   hosts: localhost
