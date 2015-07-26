@@ -2,7 +2,6 @@
 
 - hosts: localhost
   connection: local
-  sudo: yes
   vars:
     src_dir: /usr/local/src
     bin_dir: /usr/local/bin
@@ -14,7 +13,6 @@
       when: has_kindle.stat.exists == False
     - command: wine /tmp/KindleForPC-installer.exe
       when: has_kindle.stat.exists == False
-      sudo: no
 
     - debug: msg="install licecap by wine"
     - stat: path="/home/oji/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
@@ -23,13 +21,11 @@
       when: has_licecap.stat.exists == False
     - command: wine /tmp/licecap125-install.exe
       when: has_licecap.stat.exists == False
-      sudo: no
 
     - debug: msg="install peco"
     - command: which peco
       register: has_peco
       ignore_errors: yes
-      sudo: no
     - shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
       register: peco_latest_version
       when: has_peco.rc != 0
@@ -46,7 +42,6 @@
     - command: which ttygif
       register: has_ttygif
       ignore_errors: yes
-      sudo: no
     - get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
       when: has_ttygif.rc != 0
     - unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ src_dir }}
@@ -58,7 +53,6 @@
     - command: which winetricks
       register: has_winetricks
       ignore_errors: yes
-      sudo: no
     - get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
       when: has_winetricks.rc != 0
 
@@ -66,14 +60,32 @@
     - command: which playonlinux
       register: has_playonlinux
       ignore_errors: yes
-      sudo: no
     - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest={{ bin_dir }} mode=0755
       when: has_playonlinux.rc != 0
 
-    - debug: msg="install gvm"
+    - debug: msg="install gvm" # for gradle
+    - command: which gvm
+      register: has_gvm
+      ignore_errors: yes
     - shell: curl -s get.gvmtool.net | bash
-      sudo: no
+      when: has_gvm.rc != 0
       tags:
         - skip_ansible_lint
+
+    - debug: msg="install gradle"
+    - command: which gradle
+      register: has_gradle
+      ignore_errors: yes
     - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle
-      sudo: no
+      when: has_gradle.rc != 0
+
+    - debug: msg="update cabal"
+    - command: cabal update
+
+    - debug: msg="install shellcheck"
+    - command: which shellcheck
+      register: has_shellcheck
+      ignore_errors: yes
+    - command: cabal install shellcheck
+      when: has_shellcheck.rc != 0
+
