@@ -13,6 +13,7 @@
       with_items:
         - apvlv # pdf viewer
         - byobu # tmux/GNU screen wrapper
+        - cabal-install # for shellcheck
         - cadaver # WevDAV client
         - cmigemo
         - ctags
