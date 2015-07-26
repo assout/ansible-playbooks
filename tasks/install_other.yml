@@ -30,7 +30,8 @@
       register: has_gvm
       ignore_errors: yes
     - shell: curl -s get.gvmtool.net | bash
-      when: has_gvm.rc != 0 tags:
+      when: has_gvm.rc != 0
+      tags:
         - skip_ansible_lint
 
     - debug: msg="install gradle"
