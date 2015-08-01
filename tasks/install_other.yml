@@ -5,6 +5,7 @@
   tasks:
     - pip: name=vim-vint
     - pip: name=ansible-lint
+    - pip: name=bashate
 
     - npm: name=wunderline global=yes
     - npm: name=ttystudio global=yes
