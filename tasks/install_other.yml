@@ -10,6 +10,8 @@
     - npm: name=wunderline global=yes
     - npm: name=ttystudio global=yes
 
+    - gem: name=mdl
+
     - debug: msg="install kindle by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
       register: has_kindle
