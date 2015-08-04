@@ -37,6 +37,7 @@
         - pandoc
         - plantuml
         - python-pip
+        - rubygems
         - shcov
         - shunit2
         - strace

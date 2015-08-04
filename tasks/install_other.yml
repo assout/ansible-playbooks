@@ -8,9 +8,16 @@
     - pip: name=bashate
 
     - npm: name=wunderline global=yes
+      sudo: yes
     - npm: name=ttystudio global=yes
+      sudo: yes
+    - npm: name=js-yaml global=yes
+      sudo: yes
 
-    - gem: name=mdl
+    - gem: name=mdl user_install=no
+      sudo: yes
+    - gem: name=yaml-lint user_install=no
+      sudo: yes
 
     - debug: msg="install kindle by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
