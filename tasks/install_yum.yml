@@ -30,6 +30,7 @@
         - hg # for ttyrec2gif
         - ibus-mozc # required logout/login
         - key-mon # screen key input
+        - lshw # Hardware Lister
         - man-pages-ja
         - maven
         - nkf
