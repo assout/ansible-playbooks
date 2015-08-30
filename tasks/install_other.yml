@@ -4,8 +4,13 @@
   connection: local
   tasks:
     - pip: name=vim-vint
+      sudo: yes
     - pip: name=ansible-lint
+      sudo: yes
     - pip: name=bashate
+      sudo: yes
+    - pip: name=mycli
+      sudo: yes
 
     - npm: name=wunderline global=yes
       sudo: yes
@@ -14,9 +19,17 @@
     - npm: name=js-yaml global=yes
       sudo: yes
 
+    - gem: name=rubygems-update user_install=no
+      sudo: yes
     - gem: name=mdl user_install=no
       sudo: yes
     - gem: name=yaml-lint user_install=no
+      sudo: yes
+    - gem: name=travis user_install=no
+      sudo: yes
+    - gem: name=travis-lint user_install=no
+      sudo: yes
+    - gem: name=rhc user_install=no
       sudo: yes
 
     - debug: msg="install kindle by wine"

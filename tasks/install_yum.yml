@@ -19,6 +19,7 @@
         - ctags
         - dconf-editor
         - devscripts-minimal # for checkbahisms
+        - docker
         - eclipse
         - ftp
         - gcc
@@ -33,11 +34,13 @@
         - lshw # Hardware Lister
         - man-pages-ja
         - maven
+        - community-mysql
         - nkf
         - npm
         - pandoc
         - plantuml
         - python-pip
+        - ruby-devel
         - rubygems
         - shcov
         - shunit2
@@ -93,3 +96,4 @@
     - replace: dest=/etc/yum.repos.d/playonlinux.repo regexp='enable=1' replace='enable=0'
     - yum: name=playonlinux state=latest enablerepo=playonlinux
 
+# vim:ft=ansible:

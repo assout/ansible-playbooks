@@ -7,6 +7,7 @@
 # TODO FindBugs
 # TODO Terminal plugin
 # TODO stepcounter
+# TODO Lombok
 
 -
   hosts: localhost
