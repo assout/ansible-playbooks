@@ -1,13 +1,17 @@
 language: python
-python:
-  - "2.7"
+python: "2.7"
+sudo: false
+cache: pip
+
 install:
   - pip install ansible
+
 before_script:
   - pushd ../
   - git clone https://github.com/willthames/ansible-lint.git
   - export PYTHONPATH=$PYTHONPATH:`pwd`/ansible-lint/lib
   - export PATH=$PATH:`pwd`/ansible-lint/bin
+
 script:
   - popd
   - ansible-lint main.yml # change your playbook name
