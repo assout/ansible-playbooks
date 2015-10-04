@@ -1,5 +1,6 @@
 ---
 # TODO mozc の設定(ショートカットキー、スペースを半角のみ
+# TODO terminalのフォントをRicty 10ptにする
 
 - hosts: localhost
   connection: local

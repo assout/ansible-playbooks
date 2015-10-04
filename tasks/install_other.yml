@@ -9,7 +9,11 @@
       sudo: yes
     - pip: name=bashate
       sudo: yes
+    - pip: name=docker-compose
+      sudo: yes
     - pip: name=mycli
+      sudo: yes
+    - pip: name=websocket # for docker-compose
       sudo: yes
 
     - npm: name=wunderline global=yes
@@ -17,6 +21,8 @@
     - npm: name=ttystudio global=yes
       sudo: yes
     - npm: name=js-yaml global=yes
+      sudo: yes
+    - npm: name=jsonlint global=yes
       sudo: yes
 
     - gem: name=rubygems-update user_install=no
@@ -31,7 +37,10 @@
       sudo: yes
     - gem: name=rhc user_install=no
       sudo: yes
-
+    # TODO エラー出る
+    # - gem: name=sqlint user_install=no
+    #   sudo: yes
+    #
     - debug: msg="install kindle by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
       register: has_kindle

@@ -8,6 +8,7 @@
 # TODO Terminal plugin
 # TODO stepcounter
 # TODO Lombok
+# TODO PlantUML
 
 -
   hosts: localhost

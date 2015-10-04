@@ -39,12 +39,15 @@
         - npm
         - pandoc
         - plantuml
+        - python-devel
         - python-pip
+        - pigz
         - ruby-devel
         - rubygems
         - shcov
         - shunit2
         - strace
+        - sysstat
         - vim
         - w3m # for vim-plugin vim-ref
         - wine
