@@ -4,5 +4,5 @@ ansible-playbooks for personal PC setup
 
 # How to run
 
-	curl -L https://raw.githubusercontent.com/assout/ansible-playbook/master/install.sh | bash
+	curl -L https://raw.githubusercontent.com/assout/ansible-playbooks/master/install.sh | bash
 
