@@ -3,15 +3,14 @@
 - hosts: localhost
   connection: local
 # TODO 順序性を無くしたい.
-# これは最初にやらないと.
-- include: tasks/install_yum.yml
+- include: tasks/install_dnf.yml
 - include: tasks/install_manual.yml
 - include: tasks/install_make.yml
 - include: tasks/install_other.yml
-# homeディレクトリの英語化を早めにやったほうがよい.
+# Caution: homeディレクトリの英語化を早めにやったほうがよい.
 - include: tasks/gnome.yml
 - include: tasks/git.yml
 - include: tasks/vim.yml
-- include: tasks/eclipse.yml
+# - include: tasks/eclipse.yml
 - include: tasks/other.yml
 

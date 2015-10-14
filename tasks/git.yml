@@ -10,7 +10,7 @@
   tasks:
     - command: ssh -T git@github.com
       register: exit
-      failed_when: exit.rc not in [0, 1]
+      failed_when: exit.rc not in [0, 1, 255]
 
     - user: name=oji generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
       when : exit.rc not in [0, 1]
@@ -24,10 +24,6 @@
     - command: ssh -T git@github.com
       register: exit
       failed_when: exit.rc not in [0, 1]
-
-    - shell: curl -L https://raw.githubusercontent.com/assout/dotfiles/master/install.sh | bash
-      tags:
-        - skip_ansible_lint
 
     - git: repo=git@github.com:yascentur/RictyDiminished.git
            version=master
@@ -44,3 +40,12 @@
            version=master
            dest={{ vimDir }}/unite-todo
            update=no
+
+    - shell: curl -L https://raw.githubusercontent.com/assout/dotfiles/master/install.sh | bash
+      tags:
+        - skip_ansible_lint
+
+    - shell: curl -L https://raw.githubusercontent.com/assout/memolist/master/install.sh | bash
+      tags:
+        - skip_ansible_lint
+

@@ -18,8 +18,9 @@
 
     - npm: name=wunderline global=yes
       sudo: yes
-    - npm: name=ttystudio global=yes
-      sudo: yes
+# error
+#    - npm: name=ttystudio global=yes
+#      sudo: yes
     - npm: name=js-yaml global=yes
       sudo: yes
     - npm: name=jsonlint global=yes
@@ -44,9 +45,9 @@
     - debug: msg="install kindle by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
       register: has_kindle
-    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp
-      when: has_kindle.stat.exists == False
-    - command: wine /tmp/KindleForPC-installer.exe
+#    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp timeout=300
+#      when: has_kindle.stat.exists == False
+    - shell: wine /tmp/$(ls /tmp | grep KindleForPC-installer)
       when: has_kindle.stat.exists == False
 
     - debug: msg="install licecap by wine"
@@ -58,28 +59,19 @@
       when: has_licecap.stat.exists == False
 
     - debug: msg="install gvm" # for gradle
-    - command: which gvm
+    - stat: path="~/.gvm/bin/gvm"
       register: has_gvm
       ignore_errors: yes
-    - shell: curl -s get.gvmtool.net | bash
-      when: has_gvm.rc != 0
+    - shell: curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
+      when: has_gvm.stat.exists == False
       tags:
         - skip_ansible_lint
 
-    - debug: msg="install gradle"
-    - command: which gradle
-      register: has_gradle
-      ignore_errors: yes
-    - shell: source ~/.gvm/bin/gvm-init.sh && yes | gvm install gradle
-      when: has_gradle.rc != 0
-
-    - debug: msg="update cabal"
-    - command: cabal update
-
-    - debug: msg="install shellcheck"
-    - command: which shellcheck
-      register: has_shellcheck
-      ignore_errors: yes
-    - command: cabal install shellcheck
-      when: has_shellcheck.rc != 0
+#    TODO bashrc
+#    - debug: msg="install gradle"
+#    - command: which gradle
+#      register: has_gradle
+#      ignore_errors: yes
+#    - shell: gvm install gradle
+#      when: has_gradle.rc != 0
 
