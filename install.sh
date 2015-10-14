@@ -3,7 +3,10 @@
 mkdir -p ~/Development
 cd ~/Development
 git clone https://github.com/assout/ansible-playbooks.git
-sudo dnf install ansible
 cd ./ansible-playbooks
+
+sudo dnf install ansible
 ansible-playbook main.yml -Kvvv
+
+git remote set-url origin git@github.com:assout/ansible-playbooks.git
 
