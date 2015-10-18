@@ -1,6 +1,7 @@
 ---
 # TODO mozc の設定(ショートカットキー、スペースを半角のみ
 # TODO terminalのフォントをRicty 11ptにする
+# TODO terminalの起動コマンドにtmxuxを指定
 
 - hosts: localhost
   connection: local
