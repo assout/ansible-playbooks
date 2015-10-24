@@ -42,23 +42,27 @@
       sudo: yes
       tags: fail
 
+    - command: which wine
+      register: has_wine
+      ignore_errors: yes
+
     - debug: msg="install kindle by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
       register: has_kindle
     - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp timeout=300
-      when: has_kindle.stat.exists == False
+      when: has_wine.rc == 0 and has_kindle.stat.exists == False
       tags: slow
 
     - shell: wine /tmp/$(ls /tmp | grep KindleForPC-installer)
-      when: has_kindle.stat.exists == False
+      when: has_wine.rc == 0 and has_kindle.stat.exists == False
 
     - debug: msg="install licecap by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
       register: has_licecap
     - get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
-      when: has_licecap.stat.exists == False
+      when: has_wine.rc == 0 and has_licecap.stat.exists == False
     - command: wine /tmp/licecap125-install.exe
-      when: has_licecap.stat.exists == False
+      when: has_wine.rc == 0 and has_licecap.stat.exists == False
 
     - debug: msg="install gvm" # for gradle
     - stat: path="~/.gvm/bin/gvm"
