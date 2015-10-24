@@ -20,6 +20,7 @@
 
     - pause: prompt="clipboard value to github.(https://github.com/settings/ssh)"
       when : exit.rc not in [0, 1]
+      tags : manual
 
     - command: ssh -T git@github.com
       register: exit

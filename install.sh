@@ -6,7 +6,7 @@ git clone https://github.com/assout/ansible-playbooks.git
 cd ./ansible-playbooks
 
 sudo dnf install ansible
-ansible-playbook main.yml -Kvvv
+ansible-playbook main.yml -Kvvv --skip-tags "fail"
 
 git remote set-url origin git@github.com:assout/ansible-playbooks.git
 

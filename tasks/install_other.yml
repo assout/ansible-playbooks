@@ -18,9 +18,9 @@
 
     - npm: name=wunderline global=yes
       sudo: yes
-# error
-#    - npm: name=ttystudio global=yes
-#      sudo: yes
+    - npm: name=ttystudio global=yes
+      sudo: yes
+      tags: fail
     - npm: name=js-yaml global=yes
       sudo: yes
     - npm: name=jsonlint global=yes
@@ -38,15 +38,17 @@
       sudo: yes
     - gem: name=rhc user_install=no
       sudo: yes
-    # TODO エラー出る
-    # - gem: name=sqlint user_install=no
-    #   sudo: yes
-    #
+    - gem: name=sqlint user_install=no
+      sudo: yes
+      tags: fail
+
     - debug: msg="install kindle by wine"
     - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
       register: has_kindle
-#    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp timeout=300
-#      when: has_kindle.stat.exists == False
+    - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp timeout=300
+      when: has_kindle.stat.exists == False
+      tags: slow
+
     - shell: wine /tmp/$(ls /tmp | grep KindleForPC-installer)
       when: has_kindle.stat.exists == False
 

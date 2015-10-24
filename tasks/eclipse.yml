@@ -13,6 +13,7 @@
 -
   hosts: localhost
   connection: local
+  tags: slow
   tasks:
   - name: eclipse | Install Marketplace Client
     command: "eclipse -nosplash \

@@ -8,6 +8,7 @@
   tasks:
     - name: upgrade all packages
       dnf: name=* state=latest
+      tags: slow
 
     - dnf: name={{ item }} state=latest
       with_items:
@@ -55,15 +56,20 @@
          - xvkbd # for vim-plugin im_control.
          - xwd # for ttygif
          - ShellCheck
+      tags: slow
 
     # TODO enablerepoで出来ないか
     - command: dnf -y copr enable spot/chromium
-    # - dnf: name=chromium state=latest # TODO allowerasingつけないとエラーになる
+      tags: fail
+    - dnf: name=chromium state=latest # TODO allowerasingつけないとエラーになる
+      tags: fail
 
     - debug: msg="install dropbox"
     - copy: src=files/dropbox.repo dest=/etc/yum.repos.d/ follow=yes
     - dnf: name=nautilus-dropbox state=latest
+      tags: slow
     - command: dropbox
+      tags: manual
 
     # - debug: msg="install insync"
     # - copy: src=files/insync.repo dest=/etc/yum.repos.d/ follow=yes

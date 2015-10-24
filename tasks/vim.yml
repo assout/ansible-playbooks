@@ -8,6 +8,7 @@
   tasks:
     - git: repo=git@github.com:Shougo/neobundle.vim version=master dest=~/.vim/bundle/neobundle.vim
     - command: ~/.vim/bundle/neobundle.vim/bin/neoinstall
+      tags: slow
 
     - file: path=~/.cache/hateblo/blog state=directory
     - stat: path="~/.vimrc.local"
