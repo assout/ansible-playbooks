@@ -7,9 +7,6 @@
   connection: local
   tasks:
     - shell: LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
-    # チェックしないと、IME切替時にxmodmapの設定がリセットされるっぽい(結局trueでもリセットされちゃうっぽい)
-    # 今はxmodmap設定しないにしているので不要
-    # - command: gsettings set org.freedesktop.ibus.general use-system-keyboard-layout true
     - command: gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'mozc-jp'), ('xkb', 'jp')]"
     - command: gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
     - command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
