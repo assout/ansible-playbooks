@@ -1,0 +1,51 @@
+---
+
+- debug: msg="install peco"
+- command: which peco
+  register: has_peco
+  ignore_errors: yes
+  sudo: no
+- shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+  register: peco_latest_version
+  when: has_peco.rc != 0
+  tags:
+    - skip_ansible_lint
+- get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
+  when: has_peco.rc != 0
+- unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+  when: has_peco.rc != 0
+- copy: src=/tmp/peco_linux_amd64/peco dest={{ bin_dir }} mode=0755
+  when: has_peco.rc != 0
+
+- debug: msg="install ttygif"
+- command: which ttygif
+  register: has_ttygif
+  ignore_errors: yes
+  sudo: no
+- get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
+  when: has_ttygif.rc != 0
+- unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ src_dir }}
+  when: has_ttygif.rc != 0
+- copy: src={{ src_dir }}/ttygif_linux_amd64/ttygif dest={{ bin_dir }} mode=0755
+  when: has_ttygif.rc != 0
+
+- debug: msg="install winetricks"
+- command: which winetricks
+  register: has_winetricks
+  ignore_errors: yes
+  sudo: no
+- get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
+  when: has_winetricks.rc != 0
+
+- debug: msg="install redpen"
+- command: which redpen
+  register: has_redpen
+  ignore_errors: yes
+  sudo: no
+- get_url: url=https://github.com/redpen-cc/redpen/releases/download/v1.3.0/redpen-1.3.0.tar.gz dest=/tmp
+  when: has_redpen.rc != 0
+- unarchive: src=/tmp/redpen-1.3.0.tar.gz dest={{ src_dir }}
+  when: has_redpen.rc != 0
+- file: src={{ src_dir }}/redpen-distribution-1.3/bin/redpen dest={{ bin_dir }}/redpen mode=0755 state=link
+  when: has_redpen.rc != 0
+

@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: yes
+  roles:
+    # TODO 順序性を無くしたい.
+    - dnf
+    - install_manual
+    - make
+    - pms
+    # Caution: homeディレクトリの英語化を早めにやったほうがよい.
+    # Caution: gnomeの設定を早めにやりたい(操作性)
+    - gnome
+    - git
+    - vim
+    - { role: eclipse, tags: ["slow"] }
+    - tool_settings
+

@@ -1,0 +1,96 @@
+---
+
+- name: upgrade all packages
+  dnf: name=* state=latest
+  tags: slow
+
+- dnf: name={{ item }} state=latest
+  with_items:
+     - apvlv # pdf viewer
+     - byobu # tmux/GNU screen wrapper
+     - cadaver # WevDAV client
+     - cmigemo
+     - ctags
+     - dconf-editor
+     - devscripts-minimal # for checkbahisms
+     - docker
+     - eclipse
+     - ftp
+     - gcc
+     - gftp # ftp client
+     - gnome-tweak-tool
+     - go
+     - graphviz # for plantuml
+     - gvim
+     - hg # for ttyrec2gif
+     - ibus-mozc # required logout/login
+     - key-mon # screen key input
+     - lshw # Hardware Lister
+     - man-pages-ja
+     - maven
+     - community-mysql
+     - nkf
+     - npm
+     - pandoc
+     - patch
+     - plantuml
+     - python-devel
+     - python-pip
+     - pigz
+     - ruby-devel
+     - rubygems
+     - shcov
+     - shunit2
+     - strace
+     - sysstat
+     - vim
+     - w3m # for vim-plugin vim-ref
+     # - wine # TODO allowerasingつけないとエラーになる
+     - xclip
+     - xvkbd # for vim-plugin im_control.
+     - xwd # for ttygif
+     - ShellCheck
+  tags: slow
+
+# TODO enablerepoで出来ないか
+- command: dnf -y copr enable spot/chromium
+  tags: fail
+- dnf: name=chromium state=latest # TODO allowerasingつけないとエラーになる
+  tags: fail
+
+- debug: msg="install dropbox"
+- copy: src=dropbox.repo dest=/etc/yum.repos.d/ follow=yes
+- dnf: name=nautilus-dropbox state=latest
+  tags: slow
+- command: dropbox
+  tags: manual
+
+# - debug: msg="install insync"
+# - copy: src=insync.repo dest=/etc/yum.repos.d/ follow=yes
+# - rpm_key: state=present key=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+# - dnf: name=insync state=latest enablerepo=insync
+#
+# - debug: msg="install calibre"
+# - copy: src=fedora-calibre.repo dest=/etc/yum.repos.d/ follow=yes
+# - dnf: name=calibre state=latest enablerepo=fedora-calibre
+#
+# - debug: msg="install screenkey" # screen key input
+# - command: which screenkey
+#   register: has_screenkey
+#   ignore_errors: yes
+# - get_url: url=http://download.opensuse.org/repositories/home:Kenzy:packages/Fedora_{{ fedora_version }}/home:Kenzy:packages.repo dest=/etc/dnf.repos.d/
+#   when: has_screenkey.rc != 0
+# - replace: dest=/etc/dnf.repos.d/home:Kenzy:packages.repo regexp='enable=1' replace='enable=0'
+# - dnf: name=screenkey state=latest enablerepo=home_Kenzy_packages
+#
+# - debug: msg="install playonlinux"
+# - command: which playonlinux
+#   register: has_playonlinux
+#   ignore_errors: yes
+#   sudo: no
+# - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest=/etc/yum.repos.d/
+#   when: has_playonlinux.rc != 0
+# - replace: dest=/etc/yum.repos.d/playonlinux.repo regexp='enable=1' replace='enable=0'
+# - dnf: name=playonlinux state=latest enablerepo=playonlinux
+
+# vim:ft=ansible:

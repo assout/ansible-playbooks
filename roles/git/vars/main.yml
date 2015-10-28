@@ -1,0 +1,5 @@
+---
+
+devDir: /home/oji/Development # TODO sudo:yesでも使うので~使えない
+thirdDir: "{{ devDir }}/third-party"
+vimDir: "{{ devDir }}/vim-plugins"

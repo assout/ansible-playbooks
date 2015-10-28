@@ -1,0 +1,6 @@
+---
+
+src_dir: /usr/local/src
+bin_dir: /usr/local/bin
+ttyrec_ver: "ttyrec-1.0.8"
+seq2gif_ver: "0.10.3"

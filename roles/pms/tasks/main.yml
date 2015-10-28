@@ -1,0 +1,80 @@
+---
+
+- pip: name=vim-vint
+  sudo: yes
+- pip: name=ansible-lint
+  sudo: yes
+- pip: name=bashate
+  sudo: yes
+- pip: name=docker-compose
+  sudo: yes
+- pip: name=mycli
+  sudo: yes
+- pip: name=websocket # for docker-compose
+  sudo: yes
+
+- npm: name=wunderline global=yes
+  sudo: yes
+- npm: name=ttystudio global=yes
+  sudo: yes
+  tags: fail
+- npm: name=js-yaml global=yes
+  sudo: yes
+- npm: name=jsonlint global=yes
+  sudo: yes
+
+- gem: name=rubygems-update user_install=no
+  sudo: yes
+- gem: name=mdl user_install=no
+  sudo: yes
+- gem: name=yaml-lint user_install=no
+  sudo: yes
+- gem: name=travis user_install=no
+  sudo: yes
+- gem: name=travis-lint user_install=no
+  sudo: yes
+- gem: name=rhc user_install=no
+  sudo: yes
+- gem: name=sqlint user_install=no
+  sudo: yes
+  tags: fail
+
+- command: which wine
+  register: has_wine
+  ignore_errors: yes
+
+- debug: msg="install kindle by wine"
+- stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+  register: has_kindle
+- get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp timeout=300
+  when: has_wine.rc == 0 and has_kindle.stat.exists == False
+  tags: slow
+
+- shell: wine /tmp/$(ls /tmp | grep KindleForPC-installer)
+  when: has_wine.rc == 0 and has_kindle.stat.exists == False
+
+- debug: msg="install licecap by wine"
+- stat: path="~/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
+  register: has_licecap
+- get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
+  when: has_wine.rc == 0 and has_licecap.stat.exists == False
+- command: wine /tmp/licecap125-install.exe
+  when: has_wine.rc == 0 and has_licecap.stat.exists == False
+
+- debug: msg="install gvm" # for gradle
+- stat: path="~/.gvm/bin/gvm"
+  register: has_gvm
+  ignore_errors: yes
+- shell: curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
+  when: has_gvm.stat.exists == False
+  tags:
+    - skip_ansible_lint
+
+#    TODO bashrc
+#    - debug: msg="install gradle"
+#    - command: which gradle
+#      register: has_gradle
+#      ignore_errors: yes
+#    - shell: gvm install gradle
+#      when: has_gradle.rc != 0
+
