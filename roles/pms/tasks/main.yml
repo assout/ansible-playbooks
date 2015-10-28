@@ -1,42 +1,42 @@
 ---
 
 - pip: name=vim-vint
-  sudo: yes
+  become: yes
 - pip: name=ansible-lint
-  sudo: yes
+  become: yes
 - pip: name=bashate
-  sudo: yes
+  become: yes
 - pip: name=docker-compose
-  sudo: yes
+  become: yes
 - pip: name=mycli
-  sudo: yes
+  become: yes
 - pip: name=websocket # for docker-compose
-  sudo: yes
+  become: yes
 
 - npm: name=wunderline global=yes
-  sudo: yes
+  become: yes
 - npm: name=ttystudio global=yes
-  sudo: yes
+  become: yes
   tags: fail
 - npm: name=js-yaml global=yes
-  sudo: yes
+  become: yes
 - npm: name=jsonlint global=yes
-  sudo: yes
+  become: yes
 
 - gem: name=rubygems-update user_install=no
-  sudo: yes
+  become: yes
 - gem: name=mdl user_install=no
-  sudo: yes
+  become: yes
 - gem: name=yaml-lint user_install=no
-  sudo: yes
+  become: yes
 - gem: name=travis user_install=no
-  sudo: yes
+  become: yes
 - gem: name=travis-lint user_install=no
-  sudo: yes
+  become: yes
 - gem: name=rhc user_install=no
-  sudo: yes
+  become: yes
 - gem: name=sqlint user_install=no
-  sudo: yes
+  become: yes
   tags: fail
 
 - command: which wine

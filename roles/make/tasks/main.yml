@@ -4,7 +4,7 @@
 - command: which ttyrec
   register: has_ttyrec
   ignore_errors: yes
-  sudo: no
+  become: no
 - get_url: url="http://0xcc.net/ttyrec/{{ttyrec_ver}}.tar.gz" dest=/tmp
   when: has_ttyrec.rc != 0
 - unarchive: src=/tmp/{{ttyrec_ver}}.tar.gz dest={{src_dir}}
@@ -26,7 +26,7 @@
 - command: which seq2gif
   register: has_seq2gif
   ignore_errors: yes
-  sudo: no
+  become: no
 - get_url: url="https://github.com/saitoha/seq2gif/archive/v{{seq2gif_ver}}.tar.gz" dest=/tmp
   when: has_seq2gif.rc != 0
 - unarchive: src=/tmp/seq2gif-{{seq2gif_ver}}.tar.gz dest={{src_dir}}

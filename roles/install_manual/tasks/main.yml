@@ -4,7 +4,7 @@
 - command: which peco
   register: has_peco
   ignore_errors: yes
-  sudo: no
+  become: no
 - shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
   register: peco_latest_version
   when: has_peco.rc != 0
@@ -21,7 +21,7 @@
 - command: which ttygif
   register: has_ttygif
   ignore_errors: yes
-  sudo: no
+  become: no
 - get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
   when: has_ttygif.rc != 0
 - unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ src_dir }}
@@ -33,7 +33,7 @@
 - command: which winetricks
   register: has_winetricks
   ignore_errors: yes
-  sudo: no
+  become: no
 - get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
   when: has_winetricks.rc != 0
 
@@ -41,7 +41,7 @@
 - command: which redpen
   register: has_redpen
   ignore_errors: yes
-  sudo: no
+  become: no
 - get_url: url=https://github.com/redpen-cc/redpen/releases/download/v1.3.0/redpen-1.3.0.tar.gz dest=/tmp
   when: has_redpen.rc != 0
 - unarchive: src=/tmp/redpen-1.3.0.tar.gz dest={{ src_dir }}

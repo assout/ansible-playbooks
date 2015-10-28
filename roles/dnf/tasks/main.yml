@@ -87,7 +87,7 @@
 # - command: which playonlinux
 #   register: has_playonlinux
 #   ignore_errors: yes
-#   sudo: no
+#   become: no
 # - get_url: url=http://rpm.playonlinux.com/playonlinux.repo dest=/etc/yum.repos.d/
 #   when: has_playonlinux.rc != 0
 # - replace: dest=/etc/yum.repos.d/playonlinux.repo regexp='enable=1' replace='enable=0'

@@ -19,6 +19,7 @@
 - command: ssh -T git@github.com
   register: exit
   failed_when: exit.rc not in [0, 1]
+  tags : fail
 
 - git: repo=git@github.com:yascentur/RictyDiminished.git
        version=master
@@ -29,7 +30,7 @@
         dest=/usr/share/fonts/
         force=no
   with_fileglob: "{{ thirdDir }}/RictyDiminished/*.ttf"
-  sudo: yes
+  become: yes
 
 - git: repo=git@github.com:assout/unite-todo.git
        version=master
