@@ -14,4 +14,4 @@ before_script:
 
 script:
   - popd
-  - ansible-lint main.yml # change your playbook name
+  - ansible-lint site.yml # change your playbook name
