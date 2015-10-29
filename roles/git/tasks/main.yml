@@ -16,11 +16,6 @@
   when : exit.rc not in [0, 1]
   tags : manual
 
-- command: ssh -T git@github.com
-  register: exit
-  failed_when: exit.rc not in [0, 1]
-  tags : fail
-
 - git: repo=git@github.com:yascentur/RictyDiminished.git
        version=master
        dest={{ thirdDir }}/RictyDiminished
