@@ -1,6 +1,6 @@
 ---
 # TODO mozc の設定(ショートカットキー、スペースを半角のみ
-# TODO terminalのフォントをRicty 11ptにする
+# TODO terminalのフォントをRicty 10ptにする
 # TODO terminalの起動コマンドにtmxuxを指定
 
 - shell: LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
