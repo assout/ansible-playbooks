@@ -55,6 +55,7 @@
 # TODO enablerepoで出来ないか
 - command: dnf -y copr enable spot/chromium
   tags: fail
+# TODO あまりメンテされてないからchromeのほうが良いらしい Ref. <http://fedorajp.jimdo.com/%E8%BF%BD%E5%8A%A0%E3%82%BD%E3%83%95%E3%83%88/>
 - dnf: name=chromium state=latest # TODO allowerasingつけないとエラーになる
   tags: fail
 
