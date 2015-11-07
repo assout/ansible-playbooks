@@ -1,52 +1,38 @@
 ---
 
 - pip: name=vim-vint
-  become: yes
 - pip: name=ansible-lint
-  become: yes
 - pip: name=bashate
-  become: yes
 - pip: name=docker-compose
-  become: yes
 - pip: name=mycli
-  become: yes
 - pip: name=websocket # for docker-compose
-  become: yes
 
 - npm: name=wunderline global=yes
-  become: yes
 - npm: name=ttystudio global=yes
-  become: yes
   tags: fail
 - npm: name=js-yaml global=yes
-  become: yes
 - npm: name=jsonlint global=yes
-  become: yes
 
 - gem: name=rubygems-update user_install=no
-  become: yes
 - gem: name=mdl user_install=no
-  become: yes
 - gem: name=yaml-lint user_install=no
-  become: yes
 - gem: name=travis user_install=no
-  become: yes
 - gem: name=travis-lint user_install=no
-  become: yes
 - gem: name=rhc user_install=no
-  become: yes
 - gem: name=sqlint user_install=no
-  become: yes
   tags: fail
 
 - command: which wine
+  become: no
   register: has_wine
   ignore_errors: yes
 
 - debug: msg="install kindle by wine"
 - stat: path="~/.wine/drive_c/Program Files (x86)/Amazon/Kindle/Kindle.exe"
+  become: no
   register: has_kindle
 - get_url: url=http://www.amazon.co.jp/kindlepcdownload dest=/tmp timeout=300
+  become: no
   when: has_wine.rc == 0 and has_kindle.stat.exists == False
   tags: slow
 
@@ -55,17 +41,22 @@
 
 - debug: msg="install licecap by wine"
 - stat: path="~/.wine/drive_c/Program Files (x86)/LICEcap/licecap.exe"
+  become: no
   register: has_licecap
 - get_url: url=http://www.cockos.com/licecap/licecap125-install.exe dest=/tmp
+  become: no
   when: has_wine.rc == 0 and has_licecap.stat.exists == False
 - command: wine /tmp/licecap125-install.exe
+  become: no
   when: has_wine.rc == 0 and has_licecap.stat.exists == False
 
 - debug: msg="install gvm" # for gradle
 - stat: path="~/.gvm/bin/gvm"
+  become: no
   register: has_gvm
   ignore_errors: yes
 - shell: curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
+  become: no
   when: has_gvm.stat.exists == False
   tags:
     - skip_ansible_lint

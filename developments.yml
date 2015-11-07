@@ -1,18 +1,17 @@
 ---
 - hosts: localhost
   connection: local
-  become: yes
   roles:
     # TODO 順序性を無くしたい.
     # Caution: homeディレクトリの英語化を早めにやったほうがよい.
     # Caution: gnomeの設定を早めにやりたい(操作性)
-    - gnome
-    - dnf
-    - install_manual
-    - make
-    - pms
-    - git
-    - vim
-    - { role: eclipse, tags: ["slow"] }
-    - tool_settings
+    - { role: gnome, become: no }
+    - { role: dnf, become: yes }
+    - { role: install_manual, become: yes }
+    - { role: make, become: yes }
+    - { role: pms, become: yes }
+    - { role: git, become: no }
+    - { role: vim, become: no, hateblo_api_key: '' }
+    - { role: eclipse, become: no, tags: ["slow"] }
+    - { role: tool_settings, become: no, wunderClientId: '', wunderAccessToken: '' }
 

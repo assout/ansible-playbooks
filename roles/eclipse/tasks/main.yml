@@ -1,6 +1,7 @@
 ---
 
-# TODO ハードコード
+# TODO Skip already installed.
+#
 # TODO gradle IDE
 # TODO markdown editor
 # TODO PMD
@@ -72,6 +73,7 @@
   -installIU junit.extensions.eclipse.quick.process.feature.feature.group \
   -installIU junit.extensions.eclipse.quick.template.feature.feature.group \
   "
+  tags: fail
 
 - name: eclipse | Install ShellEd
   command: "eclipse -nosplash \

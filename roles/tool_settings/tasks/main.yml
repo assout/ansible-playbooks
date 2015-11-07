@@ -10,7 +10,7 @@
 - debug: msg="setting wunderline"
 - stat: path="~/.wunderlinerc"
   register: has_wunderline
-- copy: src=files/.wunderlinerc dest=/home/oji/ follow=yes
+- copy: src=.wunderlinerc dest=/home/oji/ follow=yes
   when: has_wunderline.stat.exists == False
 - replace: dest=~/.wunderlinerc regexp='__clientId__' replace={{ wunderClientId }}
   when: has_wunderline.stat.exists == False
