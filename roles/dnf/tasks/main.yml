@@ -60,7 +60,8 @@
 - copy: src=dropbox.repo dest=/etc/yum.repos.d/ follow=yes
 - dnf: name=nautilus-dropbox state=latest
   tags: slow
-- command: dropbox
+- command: dropbox start -i
+  become: no
   tags: manual
 
 # - debug: msg="install insync"

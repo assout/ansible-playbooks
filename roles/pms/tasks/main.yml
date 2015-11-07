@@ -37,6 +37,7 @@
   tags: slow
 
 - shell: wine /tmp/$(ls /tmp | grep KindleForPC-installer)
+  become: no
   when: has_wine.rc == 0 and has_kindle.stat.exists == False
 
 - debug: msg="install licecap by wine"
