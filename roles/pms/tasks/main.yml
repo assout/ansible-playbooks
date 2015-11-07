@@ -7,11 +7,20 @@
 - pip: name=mycli
 - pip: name=websocket # for docker-compose
 
-- npm: name=wunderline global=yes
-- npm: name=ttystudio global=yes
-  tags: fail
+- npm: name=eslint global=yes
 - npm: name=js-yaml global=yes
 - npm: name=jsonlint global=yes
+- npm: name=textlint global=yes
+- npm: name=textlint-plugin-jtf-style global=yes
+- npm: name=textlint-rule-no-todo global=yes
+- npm: name=textlint-rule-max-ten global=yes
+- npm: name=textlint-rule-spellcheck-tech-word global=yes
+- npm: name=textlint-rule-no-mix-dearu-desumasu global=yes
+- npm: name=textlint-rule-no-start-duplicated-conjunction global=yes
+- npm: name=textlint-rule-prh global=yes
+- npm: name=textlint-rule-max-number-of-lines global=yes
+- npm: name=ttystudio global=yes
+- npm: name=wunderline global=yes
 
 - gem: name=rubygems-update user_install=no
 - gem: name=mdl user_install=no
