@@ -7,7 +7,6 @@
 - dnf: name={{ item }} state=latest
   with_items:
      - apvlv # pdf viewer
-     - byobu # tmux/GNU screen wrapper
      - cadaver # WevDAV client
      - cmigemo
      - ctags
@@ -46,19 +45,16 @@
      - sysstat
      - vim
      - w3m # for vim-plugin vim-ref
-     # - wine # TODO allowerasingつけないとエラーになる
+     - wine
      - xclip
      - xvkbd # for vim-plugin im_control.
      - xwd # for ttygif
      - ShellCheck
   tags: slow
 
-# TODO enablerepoで出来ないか
-- command: dnf -y copr enable spot/chromium
-  tags: fail
-# TODO あまりメンテされてないからchromeのほうが良いらしい Ref. <http://fedorajp.jimdo.com/%E8%BF%BD%E5%8A%A0%E3%82%BD%E3%83%95%E3%83%88/>
-- dnf: name=chromium state=latest # TODO allowerasingつけないとエラーになる
-  tags: fail
+- debug: msg="install chrome"
+- copy: src=google-chrome.repo dest=/etc/yum.repos.d/ follow=yes
+- dnf: name=google-chrome-stable state=latest
 
 - debug: msg="install dropbox"
 - copy: src=dropbox.repo dest=/etc/yum.repos.d/ follow=yes
@@ -80,9 +76,9 @@
 # - command: which screenkey
 #   register: has_screenkey
 #   ignore_errors: yes
-# - get_url: url=http://download.opensuse.org/repositories/home:Kenzy:packages/Fedora_{{ fedora_version }}/home:Kenzy:packages.repo dest=/etc/dnf.repos.d/
+# - get_url: url=http://download.opensuse.org/repositories/home:Kenzy:packages/Fedora_{{ fedora_version }}/home:Kenzy:packages.repo dest=/etc/yum.repos.d/
 #   when: has_screenkey.rc != 0
-# - replace: dest=/etc/dnf.repos.d/home:Kenzy:packages.repo regexp='enable=1' replace='enable=0'
+# - replace: dest=/etc/yum.repos.d/home:Kenzy:packages.repo regexp='enable=1' replace='enable=0'
 # - dnf: name=screenkey state=latest enablerepo=home_Kenzy_packages
 #
 # - debug: msg="install playonlinux"
@@ -95,4 +91,3 @@
 # - replace: dest=/etc/yum.repos.d/playonlinux.repo regexp='enable=1' replace='enable=0'
 # - dnf: name=playonlinux state=latest enablerepo=playonlinux
 
-# vim:ft=ansible:
