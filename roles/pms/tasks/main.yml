@@ -8,6 +8,9 @@
 - pip: name=websocket # for docker-compose
 
 - npm: name=eslint global=yes
+- npm: name=eslint-config-eslint global=yes
+- npm: name=eslint-config-google global=yes
+- npm: name=eslint-config-airbnb global=yes
 - npm: name=js-yaml global=yes
 - npm: name=jsonlint global=yes
 - npm: name=textlint global=yes
