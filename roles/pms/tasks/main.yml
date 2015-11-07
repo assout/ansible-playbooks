@@ -32,7 +32,6 @@
 - gem: name=travis-lint user_install=no
 - gem: name=rhc user_install=no
 - gem: name=sqlint user_install=no
-  tags: fail
 
 - command: which wine
   become: no
