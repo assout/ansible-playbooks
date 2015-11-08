@@ -23,6 +23,8 @@
 - npm: name=textlint-rule-no-start-duplicated-conjunction global=yes
 - npm: name=textlint-rule-prh global=yes
 - npm: name=textlint-rule-max-number-of-lines global=yes
+- npm: name=textstat global=yes
+- npm: name=textstat-plugin-ja global=yes
 - npm: name=ttystudio global=yes
 - npm: name=wunderline global=yes
 
