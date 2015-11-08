@@ -3,15 +3,19 @@
   connection: local
   roles:
     # TODO 順序性を無くしたい.
+    # TODO role単位での実行のためにtagsにrole名を記載するの冗長
+    # TODO workaroundとして変数を定義している
+    #
     # Caution: homeディレクトリの英語化を早めにやったほうがよい.
     # Caution: gnomeの設定を早めにやりたい(操作性)
-    - { role: gnome, become: no }
-    - { role: dnf, become: yes }
-    - { role: install_manual, become: yes }
-    - { role: make, become: yes }
-    - { role: pms, become: yes }
-    - { role: git, become: no }
-    - { role: vim, become: no, hateblo_api_key: '' }
-    - { role: eclipse, become: no, tags: ["slow"] }
-    - { role: tool_settings, become: no, wunderClientId: '', wunderAccessToken: '' }
+    #
+    - { role: gnome          , become: no  , tags: ["gnome"] }
+    - { role: dnf            , become: yes , tags: ["dnf"] }
+    - { role: install_manual , become: yes , tags: ["install_manual"] }
+    - { role: make           , become: yes , tags: ["make"] }
+    - { role: pms            , become: yes , tags: ["pms"] }
+    - { role: git            , become: no  , tags: ["git"] }
+    - { role: vim            , become: no  , tags: ["vim"], hateblo_api_key: '' }
+    - { role: eclipse        , become: no  , tags: ["eclipse", "slow"] }
+    - { role: tool_settings  , become: no  , tags: ["tool_settings"], wunderClientId: '', wunderAccessToken: '' }
 
