@@ -1,15 +1,10 @@
 ---
 
-# TODO Skip already installed.
+# TODO Skip already installed(because slowly).
 #
-# TODO gradle IDE
 # TODO markdown editor
-# TODO PMD
-# TODO FindBugs
-# TODO Terminal plugin
 # TODO stepcounter
 # TODO Lombok
-# TODO PlantUML
 
 - name: eclipse | Install Marketplace Client
   command: "eclipse -nosplash \
@@ -91,5 +86,40 @@
   -installIU net.sourceforge.vrapper.plugin.methodtextobj.feature.group \
   -installIU net.sourceforge.vrapper.plugin.splitEditor.feature.group \
   -installIU net.sourceforge.vrapper.plugin.surround.feature.group \
+  "
+
+- name: eclipse | Install FindBugs
+  command: "eclipse -nosplash \
+  -application org.eclipse.equinox.p2.director \
+  -repository http://findbugs.cs.umd.edu/eclipse, \
+  -installIU edu.umd.cs.findbugs.plugin.eclipse.feature.group \
+  "
+
+- name: eclipse | Install TM Terminal
+  command: "eclipse -nosplash \
+  -application org.eclipse.equinox.p2.director \
+  -repository http://download.eclipse.org/tm/terminal/marketplace, \
+  -installIU org.eclipse.tm.terminal.feature.feature.group \
+  "
+
+- name: eclipse | Install PlantUML
+  command: "eclipse -nosplash \
+  -application org.eclipse.equinox.p2.director \
+  -repository http://basar.idi.ntnu.no/svn/tdt4100/anonymous/trunk/updatesite, \
+  -installIU net.sourceforge.plantuml.feature.feature.group \
+  "
+
+- name: eclipse | Install PMD
+  command: "eclipse -nosplash \
+  -application org.eclipse.equinox.p2.director \
+  -repository http://sourceforge.net/projects/pmd/files/pmd-eclipse/update-site, \
+  -installIU net.sourceforge.pmd.eclipse.feature.group \
+  "
+
+- name: eclipse | Install Gradle IDE Pack
+  command: "eclipse -nosplash \
+  -application org.eclipse.equinox.p2.director \
+  -repository http://www.nodeclipse.org/updates/gradle-ide-pack, \
+  -installIU org.springsource.ide.eclipse.gradle.feature.feature.group \
   "
 
