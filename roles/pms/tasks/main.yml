@@ -1,40 +1,40 @@
 ---
 
-- pip: name=vim-vint
 - pip: name=ansible-lint
 - pip: name=bashate
 - pip: name=docker-compose
 - pip: name=mycli
+- pip: name=vim-vint
 - pip: name=websocket # for docker-compose
 
 - npm: name=eslint global=yes
+- npm: name=eslint-config-airbnb global=yes
 - npm: name=eslint-config-eslint global=yes
 - npm: name=eslint-config-google global=yes
-- npm: name=eslint-config-airbnb global=yes
 - npm: name=eslint-md global=yes
 - npm: name=js-yaml global=yes
 - npm: name=jsonlint global=yes
 - npm: name=textlint global=yes
 - npm: name=textlint-plugin-jtf-style global=yes
-- npm: name=textlint-rule-no-todo global=yes
+- npm: name=textlint-rule-max-number-of-lines global=yes
 - npm: name=textlint-rule-max-ten global=yes
-- npm: name=textlint-rule-spellcheck-tech-word global=yes
 - npm: name=textlint-rule-no-mix-dearu-desumasu global=yes
 - npm: name=textlint-rule-no-start-duplicated-conjunction global=yes
+- npm: name=textlint-rule-no-todo global=yes
 - npm: name=textlint-rule-prh global=yes
-- npm: name=textlint-rule-max-number-of-lines global=yes
+- npm: name=textlint-rule-spellcheck-tech-word global=yes
 - npm: name=textstat global=yes
 - npm: name=textstat-plugin-ja global=yes
 - npm: name=ttystudio global=yes
 - npm: name=wunderline global=yes
 
-- gem: name=rubygems-update user_install=no
 - gem: name=mdl user_install=no
-- gem: name=yaml-lint user_install=no
+- gem: name=rhc user_install=no
+- gem: name=rubygems-update user_install=no
+- gem: name=sqlint user_install=no
 - gem: name=travis user_install=no
 - gem: name=travis-lint user_install=no
-- gem: name=rhc user_install=no
-- gem: name=sqlint user_install=no
+- gem: name=yaml-lint user_install=no
 
 - command: which wine
   become: no
