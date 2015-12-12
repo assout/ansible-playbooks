@@ -3,10 +3,12 @@
 - pip: name=ansible-lint
 - pip: name=bashate
 - pip: name=docker-compose
-- pip: name=mycli
+- pip: name=mycli # MySQL Client
 - pip: name=vim-vint
-- pip: name=websocket # for docker-compose
+- pip: name=websocket # For docker-compose
 
+- npm: name=dockerfile_lint global=yes
+- npm: name=dockerlint global=yes
 - npm: name=eslint global=yes
 - npm: name=eslint-config-airbnb global=yes
 - npm: name=eslint-config-eslint global=yes
@@ -31,7 +33,7 @@
 - npm: name=wunderline global=yes
 
 - gem: name=mdl user_install=no
-- gem: name=rhc user_install=no
+- gem: name=rhc user_install=no # OpenShift Client
 - gem: name=rubygems-update user_install=no
 - gem: name=sqlint user_install=no
 - gem: name=travis user_install=no
