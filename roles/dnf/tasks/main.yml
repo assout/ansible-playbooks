@@ -6,6 +6,7 @@
 
 - dnf: name={{ item }} state=latest
   with_items:
+     - R # For https://github.com/hyiltiz/vim-plugins-profile
      - apvlv # pdf viewer
      - cadaver # WevDAV client
      - cmigemo

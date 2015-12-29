@@ -37,6 +37,7 @@
 - npm: name=textlint-rule-spellcheck-tech-word global=yes
 - npm: name=textstat global=yes
 - npm: name=textstat-plugin-ja global=yes
+- npm: name=tldr global=yes
 - npm: name=ttystudio global=yes
 - npm: name=wunderline global=yes
 
