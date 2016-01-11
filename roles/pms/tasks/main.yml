@@ -7,6 +7,7 @@
 - pip: name=vim-vint
 - pip: name=websocket # For docker-compose
 
+- npm: name=codecov.io global=yes # For textlint-formatter-codecov
 - npm: name=dockerfile_lint global=yes
 - npm: name=dockerlint global=yes
 - npm: name=eslint global=yes
@@ -20,6 +21,7 @@
 - npm: name=json2yaml global=yes
 - npm: name=jsonlint global=yes
 - npm: name=textlint global=yes
+- npm: name=textlint-formatter-codecov global=yes
 - npm: name=textlint-plugin-jtf-style global=yes
 - npm: name=textlint-rule-ja-yahoo-kousei global=yes
 - npm: name=textlint-rule-max-appearence-count-of-words global=yes
