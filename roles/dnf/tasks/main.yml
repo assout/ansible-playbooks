@@ -15,6 +15,7 @@
      - devscripts-minimal # for checkbahisms
      - docker
      - eclipse
+     - figlet
      - ftp
      - gcc
      - gftp # ftp client
