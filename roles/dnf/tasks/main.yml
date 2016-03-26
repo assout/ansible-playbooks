@@ -24,6 +24,7 @@
      - graphviz # for plantuml
      - gvim
      - hg # for ttyrec2gif
+     - hub
      - ibus-mozc # required logout/login
      - key-mon # screen key input
      - libselinux-python # for ansible run
