@@ -25,3 +25,6 @@
 - shell: nkf -Sw -Lu -m0 --in-place ~/.vim/dict/gene.txt
   when: has_gene.stat.exists == False
 
+# For undofile
+- file: path=~/.vim/undo state=directory
+

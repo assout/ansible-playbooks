@@ -20,6 +20,8 @@
 - npm: name=js-yaml global=yes
 - npm: name=json2yaml global=yes
 - npm: name=jsonlint global=yes
+- npm: name=markdown-html global=yes
+- npm: name=markdown-to-slides global=yes
 - npm: name=textlint global=yes
 - npm: name=textlint-formatter-codecov global=yes
 - npm: name=textlint-rule-ja-yahoo-kousei global=yes
@@ -44,6 +46,7 @@
 - npm: name=wunderline global=yes
 
 - gem: name=mdl user_install=no
+- gem: name=rainbow user_install=no # For todo.sh pomodori add-on
 - gem: name=rhc user_install=no # OpenShift Client
 - gem: name=rubygems-update user_install=no
 - gem: name=sqlint user_install=no

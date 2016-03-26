@@ -40,3 +40,15 @@
   tags:
     - skip_ansible_lint
 
+# TODO: うごかない@home
+- git: repo=git@github.com:metalelf0/pomodori-todo.txt
+       version=feature/linux-terminal-notifier
+       dest={{ thirdDir }}/pomodori-todo.txt
+       update=no
+
+# TODO: notesファイル名をタスク名にしたい(grepするので)
+- git: repo=git@github.com:mgarrido/todo.txt-cli
+       version=note
+       dest={{ thirdDir }}/todo.txt-cli
+       update=no
+

@@ -1,0 +1,85 @@
+---
+
+- debug: msg="install peco"
+- command: which peco
+  register: has_peco
+  ignore_errors: yes
+  become: no
+- shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
+  register: peco_latest_version
+  when: has_peco.rc != 0
+  tags:
+    - skip_ansible_lint
+- get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
+  when: has_peco.rc != 0
+- unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
+  when: has_peco.rc != 0
+- copy: src=/tmp/peco_linux_amd64/peco dest={{ bin_dir }} mode=0755
+  when: has_peco.rc != 0
+
+- debug: msg="install ttygif"
+- command: which ttygif
+  register: has_ttygif
+  ignore_errors: yes
+  become: no
+- get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
+  when: has_ttygif.rc != 0
+- unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ lib_dir }}
+  when: has_ttygif.rc != 0
+- copy: src={{ lib_dir }}/ttygif_linux_amd64/ttygif dest={{ bin_dir }} mode=0755
+  when: has_ttygif.rc != 0
+
+- debug: msg="install winetricks"
+- command: which winetricks
+  register: has_winetricks
+  ignore_errors: yes
+  become: no
+- get_url: url=http://www.kegel.com/wine/winetricks dest={{ bin_dir }} mode=0755
+  when: has_winetricks.rc != 0
+
+- debug: msg="install gibo"
+- command: which gibo
+  register: has_gibo
+  ignore_errors: yes
+  become: no
+- get_url: url=https://raw.github.com/simonwhitaker/gibo/master/gibo dest={{ bin_dir }} mode=0755
+  when: has_gibo.rc != 0
+
+- debug: msg="install redpen"
+- command: which redpen
+  register: has_redpen
+  ignore_errors: yes
+  become: no
+- get_url: url=https://github.com/redpen-cc/redpen/releases/download/v1.3.0/redpen-1.3.0.tar.gz dest=/tmp
+  when: has_redpen.rc != 0
+- unarchive: src=/tmp/redpen-1.3.0.tar.gz dest={{ lib_dir }}
+  when: has_redpen.rc != 0
+- file: src={{ lib_dir }}/redpen-distribution-1.3/bin/redpen dest={{ bin_dir }}/redpen mode=0755 state=link
+  when: has_redpen.rc != 0
+
+- debug: msg="install Todo.sh (todo.txt-cli)"
+- command: which todo.sh
+  register: has_todo
+  ignore_errors: yes
+  become: no
+- get_url: url=https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz dest=/tmp
+  when: has_todo.rc != 0
+# Note: group,user
+- unarchive: src=/tmp/todo.txt_cli-2.10.tar.gz dest={{ lib_dir }} group=root owner=root mode=0755
+  when: has_todo.rc != 0
+- file: src={{ lib_dir }}/todo.txt_cli-2.10/todo.sh dest={{ bin_dir }}/todo.sh mode=0755 state=link
+  when: has_todo.rc != 0
+- file: src={{ lib_dir }}/todo.txt_cli-2.10/todo_completion dest=/etc/bash_completion.d/todo_completion mode=0755 state=link
+  when: has_todo.rc != 0
+
+# Required before the github repository
+- debug: msg="install Todo.sh Add-ons - note"
+- file: path={{ lib_dir }}/todo.actions.d/ state=directory
+# pomodori add-on
+- file: src={{ third_dir }}/pomodori-todo.txt/pom dest={{ lib_dir }}/todo.actions.d/pom mode=0755 state=link
+# note add-on
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/archive dest={{ lib_dir }}/todo.actions.d/archive mode=0755 state=link
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/del dest={{ lib_dir }}/todo.actions.d/del mode=0755 state=link
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/note dest={{ lib_dir }}/todo.actions.d/note mode=0755 state=link
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/rm dest={{ lib_dir }}/todo.actions.d/rm mode=0755 state=link
+
