@@ -45,6 +45,7 @@
      - shunit2
      - strace
      - sysstat
+     - tmux
      - vim
      - w3m # for vim-plugin vim-ref
      - wine

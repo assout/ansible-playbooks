@@ -108,6 +108,7 @@
   -repository http://basar.idi.ntnu.no/svn/tdt4100/anonymous/trunk/updatesite, \
   -installIU net.sourceforge.plantuml.feature.feature.group \
   "
+  tags: fail
 
 - name: eclipse | Install PMD
   command: "eclipse -nosplash \
