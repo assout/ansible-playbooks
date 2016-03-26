@@ -3,5 +3,4 @@
 src_dir: /usr/local/src
 bin_dir: /usr/local/bin
 lib_dir: /usr/local/lib
-# TODO: hardcode, DRY
-third_dir: /home/oji/Development/third-party
+

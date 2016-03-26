@@ -1,5 +1,5 @@
 ---
 
-devDir: /home/oji/Development # TODO become:yesでも使うので~使えない
-thirdDir: "{{ devDir }}/third-party"
-vimDir: "{{ devDir }}/vim-plugins"
+dev_dir: /home/oji/Development # TODO become:yesでも使うので~使えない
+third_dir: "{{ dev_dir }}/third-party"
+vim_dir: "{{ dev_dir }}/vim-plugins"

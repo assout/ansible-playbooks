@@ -18,18 +18,16 @@
 
 - git: repo=git@github.com:yascentur/RictyDiminished.git
        version=master
-       dest={{ thirdDir }}/RictyDiminished
+       dest={{ third_dir }}/RictyDiminished
        update=no
 
-- copy: src={{ item }}
-        dest=/usr/share/fonts/
-        force=no
-  with_fileglob: "{{ thirdDir }}/RictyDiminished/*.ttf"
+- copy: src={{ item }} dest=/usr/share/fonts/ force=no
+  with_fileglob: "{{ third_dir }}/RictyDiminished/*.ttf"
   become: yes
 
 - git: repo=git@github.com:assout/unite-todo.git
        version=master
-       dest={{ vimDir }}/unite-todo
+       dest={{ vim_dir }}/unite-todo
        update=no
 
 - shell: curl -L https://raw.githubusercontent.com/assout/dotfiles/master/install.sh | bash
@@ -40,15 +38,23 @@
   tags:
     - skip_ansible_lint
 
+- debug: msg="install Todo.sh Add-ons - note"
+
+- file: path={{ lib_dir }}/todo.actions.d/ state=directory
 # TODO: うごかない@home
 - git: repo=git@github.com:metalelf0/pomodori-todo.txt
        version=feature/linux-terminal-notifier
-       dest={{ thirdDir }}/pomodori-todo.txt
+       dest={{ third_dir }}/pomodori-todo.txt
        update=no
+- file: src={{ third_dir }}/pomodori-todo.txt/pom dest={{ lib_dir }}/todo.actions.d/pom mode=0755 state=link
 
 # TODO: notesファイル名をタスク名にしたい(grepするので)
 - git: repo=git@github.com:mgarrido/todo.txt-cli
        version=note
-       dest={{ thirdDir }}/todo.txt-cli
+       dest={{ third_dir }}/todo.txt-cli
        update=no
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/archive dest={{ lib_dir }}/todo.actions.d/archive mode=0755 state=link
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/del dest={{ lib_dir }}/todo.actions.d/del mode=0755 state=link
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/note dest={{ lib_dir }}/todo.actions.d/note mode=0755 state=link
+- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/rm dest={{ lib_dir }}/todo.actions.d/rm mode=0755 state=link
 

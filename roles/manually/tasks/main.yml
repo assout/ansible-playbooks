@@ -72,14 +72,6 @@
 - file: src={{ lib_dir }}/todo.txt_cli-2.10/todo_completion dest=/etc/bash_completion.d/todo_completion mode=0755 state=link
   when: has_todo.rc != 0
 
-# Required before the github repository
-- debug: msg="install Todo.sh Add-ons - note"
-- file: path={{ lib_dir }}/todo.actions.d/ state=directory
-# pomodori add-on
-- file: src={{ third_dir }}/pomodori-todo.txt/pom dest={{ lib_dir }}/todo.actions.d/pom mode=0755 state=link
-# note add-on
-- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/archive dest={{ lib_dir }}/todo.actions.d/archive mode=0755 state=link
-- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/del dest={{ lib_dir }}/todo.actions.d/del mode=0755 state=link
-- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/note dest={{ lib_dir }}/todo.actions.d/note mode=0755 state=link
-- file: src={{ third_dir }}/todo.txt-cli/todo.actions.d/rm dest={{ lib_dir }}/todo.actions.d/rm mode=0755 state=link
+# TODO: Not working. https://github.com/github/hub/issues/1041
+- get_url: url=https://raw.githubusercontent.com/github/hub/master/etc/hub.bash_completion.sh dest=/etc/bash_completion.d/hub.bash_completion.sh
 
