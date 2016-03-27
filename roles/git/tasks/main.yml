@@ -25,11 +25,6 @@
   with_fileglob: "{{ third_dir }}/RictyDiminished/*.ttf"
   become: yes
 
-- git: repo=git@github.com:assout/unite-todo.git
-       version=master
-       dest={{ vim_dir }}/unite-todo
-       update=no
-
 - shell: curl -L https://raw.githubusercontent.com/assout/dotfiles/master/install.sh | bash
   tags:
     - skip_ansible_lint
