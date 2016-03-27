@@ -71,19 +71,6 @@
 - file: src={{ lib_dir }}/todo.txt_cli-2.10/todo_completion dest=/etc/bash_completion.d/todo_completion mode=0755 state=link
   when: has_todo.rc != 0
 
-- debug: msg="install ghq"
-- command: which ghq
-  register: has_ghq
-  ignore_errors: yes
-  become: no
-- get_url: url=https://github.com/motemen/ghq/releases/download/v0.7.4/ghq_linux_amd64.zip dest=/tmp
-  when: has_ghq.rc != 0
-- file: path={{ lib_dir }}/ghq state=directory
-- unarchive: src=/tmp/ghq_linux_amd64.zip dest={{ lib_dir }}/ghq mode=0755
-  when: has_ghq.rc != 0
-- file: src={{ lib_dir }}/ghq/ghq dest={{ bin_dir }}/ghq mode=0755 state=link
-  when: has_ghq.rc != 0
-
 # TODO: Not working. https://github.com/github/hub/issues/1041
 - get_url: url=https://raw.githubusercontent.com/github/hub/master/etc/hub.bash_completion.sh dest=/etc/bash_completion.d/hub.bash_completion.sh
 

@@ -15,6 +15,7 @@
     - { role: make     , become: yes , tags: ["make"] }
     - { role: pms      , become: yes , tags: ["pms"] }
     - { role: git      , become: no  , tags: ["git"] }
+    - { role: ghq      , become: no  , tags: ["ghq"] }
     - { role: vim      , become: no  , tags: ["vim"], hateblo_api_key: '' }
     - { role: eclipse  , become: no  , tags: ["eclipse", "slow"] }
     - { role: settings , become: no  , tags: ["settings"], wunderClientId: '', wunderAccessToken: '' }
