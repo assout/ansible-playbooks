@@ -1,5 +1,0 @@
----
-
-dev_dir: /home/oji/Development # TODO become:yesでも使うので~使えない
-third_dir: "{{ dev_dir }}/third-party"
-vim_dir: "{{ dev_dir }}/vim-plugins"
