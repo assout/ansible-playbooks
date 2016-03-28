@@ -15,31 +15,44 @@
 - command: ghq root
   register: ghq_root
 
-- debug: msg={{ ghq_root.stdout }}
 - command: ghq get -p {{ item }}
   with_items:
     - https://github.com/assout/ansible-playbooks
     - https://github.com/assout/dotfiles
-    - https://github.com/assout/memolist
-    - https://github.com/assout/scripts
     - https://github.com/assout/lint-sandbox
+    - https://github.com/assout/memolist
     - https://github.com/assout/remarkjs-sandbox
+    - https://github.com/assout/scripts
     - https://github.com/aurelien-rainone/tmux-gitbar
+    - https://github.com/mgarrido/todo.txt-cli # TODO: notesファイル名をタスク名にしたい(grepするので)
+    - https://github.com/timpulver/todo.txt-graph
     - https://github.com/tmux-plugins/tpm
-    # TODO: notesファイル名をタスク名にしたい(grepするので)
-    - https://github.com/mgarrido/todo.txt-cli
     - https://github.com/yascentur/RictyDiminished
 
 - shell: "{{ ghq_root.stdout }}/github.com/assout/dotfiles/symlink.sh"
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist/symlink.sh"
 - shell: "{{ ghq_root.stdout }}/github.com/assout/scripts/symlink.sh"
 
+- copy: src={{ item }} dest=/usr/share/fonts/ force=no
+  with_fileglob: "{{ ghq_root.stdout }}/github.com/yascentur/RictyDiminished/*.ttf"
+  become: yes
+
+- debug: msg="Setup tmux plug-ins"
 - shell: ln -sf {{ ghq_root.stdout }}/github.com/aurelien-rainone/tmux-gitbar ~/.tmux-gitbar
 - shell: mkdir -p ~/.tmux/plugins && ln -sf {{ ghq_root.stdout }}/github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-- shell: cd {{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli && git checkout note
+- debug: msg="Setup todo.txt add-ons"
 - file: path={{ lib_dir }}/todo.actions.d/ state=directory
   become: yes
+
+- file: path={{ lib_dir }}/todo.actions.d/graph state=directory
+  become: yes
+- file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph/{{ item }} dest={{ lib_dir }}/todo.actions.d/graph/{{ item }} state=link
+  with_items:
+    - graph
+    - graph.py
+  become: yes
+- shell: cd {{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli && git checkout note
 - file: src={{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli/todo.actions.d/{{ item }} dest={{ lib_dir }}/todo.actions.d/{{ item }} state=link
   with_items:
     - archive
@@ -48,7 +61,3 @@
     - rm
   become: yes
 
-- copy: src={{ item }} dest=/usr/share/fonts/ force=no
-  with_fileglob: "{{ ghq_root.stdout }}/github.com/yascentur/RictyDiminished/*.ttf"
-  become: yes
- 
