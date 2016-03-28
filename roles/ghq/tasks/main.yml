@@ -21,9 +21,15 @@
     - https://github.com/assout/scripts
     - https://github.com/assout/lint-sandbox
     - https://github.com/assout/remarkjs-sandbox
+    - https://github.com/aurelien-rainone/tmux-gitbar
+    - https://github.com/tmux-plugins/tpm
 
 - shell: $(ghq root)/github.com/assout/dotfiles/symlink.sh
 - shell: $(ghq root)/github.com/assout/memolist/symlink.sh
+- shell: $(ghq root)/github.com/assout/scripts/symlink.sh
+
+- shell: ln -sf $(ghq root)/github.com/aurelien-rainone/tmux-gitbar ~/.tmux-gitbar
+- shell: mkdir -p ~/.tmux/plugins && ln -sf $(ghq root)/github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # TODO to ghq
 # - git: repo=git@github.com:yascentur/RictyDiminished.git
