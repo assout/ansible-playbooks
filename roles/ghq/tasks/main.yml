@@ -25,8 +25,8 @@
     - https://github.com/assout/scripts
     - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
-    - https://github.com/mgarrido/todo.txt-cli # TODO: notesファイル名をタスク名にしたい(grepするので)
-    - https://github.com/timpulver/todo.txt-graph
+    - https://github.com/mgarrido/todo.txt-cli # For note add-on. TODO: notesファイル名をタスク名にしたい(grepするので)
+    - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
     - https://github.com/yascentur/RictyDiminished
 
@@ -64,3 +64,4 @@
 
 - file: src={{ ghq_root.stdout }}/github.com/chrismdp/p/p dest={{ bin_dir }}/p state=link mode=755
   become: yes
+
