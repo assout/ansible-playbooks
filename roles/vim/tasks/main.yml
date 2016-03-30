@@ -26,5 +26,5 @@
   when: has_gene.stat.exists == False
 
 # For undofile
-- file: path=~/.vim/undo state=directory
+- file: path=~/.cache/undo state=directory
 

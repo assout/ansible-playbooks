@@ -48,20 +48,13 @@
 
 - file: path={{ lib_dir }}/todo.actions.d/graph state=directory
   become: yes
-- file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph/{{ item }} dest={{ lib_dir }}/todo.actions.d/graph/{{ item }} state=link
-  with_items:
-    - graph
-    - graph.py
-  become: yes
+- file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo/todo.actions.d/graph state=link
 - shell: cd {{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli && git checkout note
-- file: src={{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli/todo.actions.d/{{ item }} dest={{ lib_dir }}/todo.actions.d/{{ item }} state=link
+- file: src={{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli/todo.actions.d/{{ item }} dest=~/.todo/todo.actions.d/ state=link
   with_items:
     - archive
     - del
     - note
     - rm
-  become: yes
-
-- file: src={{ ghq_root.stdout }}/github.com/chrismdp/p/p dest={{ bin_dir }}/p state=link mode=755
   become: yes
 
