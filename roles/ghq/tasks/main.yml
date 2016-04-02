@@ -25,36 +25,34 @@
     - https://github.com/assout/scripts
     - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
+    - https://github.com/iwata/git-now
     - https://github.com/mgarrido/todo.txt-cli # For note add-on. TODO: notesファイル名をタスク名にしたい(grepするので)
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
     - https://github.com/yascentur/RictyDiminished
+- shell: cd {{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli && git checkout note
+- shell: cd {{ ghq_root.stdout }}/github.com/iwata/git-now && git submodule init && git submodule update && make install
+  become: yes
 
 - shell: "{{ ghq_root.stdout }}/github.com/assout/dotfiles/symlink.sh"
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist/symlink.sh"
-- shell: "{{ ghq_root.stdout }}/github.com/assout/scripts/symlink.sh"
 
 - copy: src={{ item }} dest=/usr/share/fonts/ force=no
   with_fileglob: "{{ ghq_root.stdout }}/github.com/yascentur/RictyDiminished/*.ttf"
   become: yes
 
 - debug: msg="Setup tmux plug-ins"
-- shell: ln -sf {{ ghq_root.stdout }}/github.com/aurelien-rainone/tmux-gitbar ~/.tmux-gitbar
-- shell: mkdir -p ~/.tmux/plugins && ln -sf {{ ghq_root.stdout }}/github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+- file: src={{ ghq_root.stdout }}/github.com/aurelien-rainone/tmux-gitbar dest=~/.tmux-gitbar state=link
 
-- debug: msg="Setup todo.txt add-ons"
-- file: path={{ lib_dir }}/todo.actions.d/ state=directory
-  become: yes
+- file: path=~/.tmux/plugins/ state=directory
+- file: src={{ ghq_root.stdout }}/github.com/tmux-plugins/tpm dest=~/.tmux/plugins/tpm state=link
 
-- file: path={{ lib_dir }}/todo.actions.d/graph state=directory
-  become: yes
-- file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo/todo.actions.d/graph state=link
-- shell: cd {{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli && git checkout note
-- file: src={{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli/todo.actions.d/{{ item }} dest=~/.todo/todo.actions.d/ state=link
+- file: path=~/.todo.actions.d/ state=directory
+- file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo.actions.d/graph state=link
+- file: src={{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli/todo.actions.d/{{ item }} dest=~/.todo.actions.d/{{ item }} state=link
   with_items:
     - archive
     - del
     - note
     - rm
-  become: yes
 
