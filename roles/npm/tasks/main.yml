@@ -1,0 +1,43 @@
+---
+
+- npm: name=codecov.io global=yes # For textlint-formatter-codecov
+- npm: name=dockerfile_lint global=yes
+- npm: name=dockerlint global=yes
+- npm: name=eslint global=yes
+- npm: name=eslint-config-airbnb global=yes
+- npm: name=eslint-config-eslint global=yes
+- npm: name=eslint-config-google global=yes
+- npm: name=eslint-md global=yes
+- npm: name=gitbook global=yes
+- npm: name=gitbook-cli global=yes
+- npm: name=js-yaml global=yes
+- npm: name=json2yaml global=yes
+- npm: name=jsonlint global=yes
+- npm: name=markdown-html global=yes
+- npm: name=markdown-to-slides global=yes
+- npm: name=n global=yes
+- npm: name=textlint global=yes
+- npm: name=textlint-formatter-codecov global=yes
+- npm: name=textlint-rule-ja-yahoo-kousei global=yes
+- npm: name=textlint-rule-max-appearence-count-of-words global=yes
+- npm: name=textlint-rule-max-length-of-title global=yes
+- npm: name=textlint-rule-max-number-of-lines global=yes
+- npm: name=textlint-rule-max-ten global=yes
+- npm: name=textlint-rule-no-double-negative-ja global=yes
+- npm: name=textlint-rule-no-doubled-joshi global=yes
+- npm: name=textlint-rule-no-dropping-the-ra global=yes
+- npm: name=textlint-rule-no-mix-dearu-desumasu global=yes
+- npm: name=textlint-rule-no-start-duplicated-conjunction global=yes
+- npm: name=textlint-rule-no-todo global=yes
+- npm: name=textlint-rule-preset-jtf-style global=yes
+- npm: name=textlint-rule-prh global=yes
+- npm: name=textlint-rule-sentence-length global=yes
+- npm: name=textlint-rule-spellcheck-tech-word global=yes
+- npm: name=textstat global=yes
+- npm: name=textstat-plugin-ja global=yes
+- npm: name=tldr global=yes
+- npm: name=ttystudio global=yes
+- npm: name=wunderline global=yes
+
+- command: n stable
+

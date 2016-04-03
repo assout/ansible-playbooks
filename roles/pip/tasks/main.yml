@@ -1,0 +1,9 @@
+---
+
+- pip: name=ansible-lint
+- pip: name=bashate
+- pip: name=docker-compose
+- pip: name=mycli # MySQL Client
+- pip: name=vim-vint
+- pip: name=websocket # For docker-compose
+

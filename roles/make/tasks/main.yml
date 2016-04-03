@@ -15,7 +15,7 @@
   when: has_ttyrec.rc != 0
 - command: chdir={{src_dir}}/{{ttyrec_ver}} make
   when: has_ttyrec.rc != 0
-- copy: src={{src_dir}}/{{ttyrec_ver}}/{{ item.bin }} dest={{bin_dir}}/{{ item.bin }} mode=755
+- copy: src={{src_dir}}/{{ttyrec_ver}}/{{ item.bin }} dest={{bin_dir}}/{{ item.bin }} mode=0755
   with_items:
     - { bin: 'ttyrec' }
     - { bin: 'ttyplay' }

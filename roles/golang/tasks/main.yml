@@ -1,0 +1,6 @@
+---
+
+- command: go get {{ item }}
+  with_items:
+    - github.com/yuroyoro/gommit-m
+
