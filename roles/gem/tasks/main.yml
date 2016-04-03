@@ -1,6 +1,7 @@
 ---
 
 - gem: name=mdl user_install=no
+- gem: name=pre-commit user_install=no
 - gem: name=rainbow user_install=no # For todo.sh pomodori add-on
 - gem: name=rhc user_install=no # OpenShift Client
 - gem: name=rubygems-update user_install=no
@@ -8,4 +9,3 @@
 - gem: name=travis user_install=no
 - gem: name=travis-lint user_install=no
 - gem: name=yaml-lint user_install=no
-
