@@ -6,56 +6,58 @@
 
 - dnf: name={{ item }} state=latest
   with_items:
-     - R # For https://github.com/hyiltiz/vim-plugins-profile
-     - apvlv # pdf viewer
-     - cadaver # WevDAV client
-     - cmigemo
-     - ctags
-     - dconf-editor
-     - devscripts-minimal # for checkbahisms
-     - docker
-     - eclipse
-     - figlet
-     - ftp
-     - gcc
-     - gftp # ftp client
-     - gnome-tweak-tool
-     - go
-     - graphviz # for plantuml
-     - gvim
-     - hg # for ttyrec2gif
-     - hub
-     - ibus-mozc # required logout/login
-     - key-mon # screen key input
-     - libselinux-python # for ansible run
-     - lshw # Hardware Lister
-     - man-pages-ja
-     - maven
-     - community-mysql
-     - nkf
-     - npm
-     - pandoc
-     - patch
-     - plantuml
-     - python-devel
-     - python-pip
-     - pigz
-     - ruby-devel
-     - rubygems
-     - shcov
-     - shunit2
-     - strace
-     - sysstat
-     - tig
-     - tmux
-     - vim
-     - w3m # for vim-plugin vim-ref
-     - wine
-     - xclip
-     - xvkbd # for vim-plugin im_control.
-     - xwd # for ttygif
-     - ShellCheck
+    - R # For https://github.com/hyiltiz/vim-plugins-profile
+    - apvlv # pdf viewer
+    - cadaver # WevDAV client
+    - cmigemo
+    - ctags
+    - dconf-editor
+    - devscripts-minimal # for checkbahisms
+    - docker
+    - eclipse
+    - figlet
+    - ftp
+    - gcc
+    - gftp # ftp client
+    - gnome-tweak-tool
+    - go
+    - graphviz # for plantuml
+    - gvim
+    - hg # for ttyrec2gif
+    - hub
+    - ibus-mozc # required logout/login
+    - key-mon # screen key input
+    - libselinux-python # for ansible run
+    - lshw # Hardware Lister
+    - man-pages-ja
+    - maven
+    - community-mysql
+    - nkf
+    - npm
+    - pandoc
+    - patch
+    - plantuml
+    - python-devel
+    - python-pip
+    - pigz
+    - ruby-devel
+    - rubygems
+    - shcov
+    - shunit2
+    - strace
+    - sysstat
+    - tig
+    - tmux
+    - vim
+    - w3m # for vim-plugin vim-ref
+    - wine
+    - xclip
+    - xvkbd # for vim-plugin im_control.
+    - xwd # for ttygif
+    - ShellCheck
   tags: slow
+
+- dnf: name=ftp://195.220.108.108/linux/fedora/linux/updates/testing/24/x86_64/n/nodejs-5.10.0-1.fc24.x86_64.rpm state=present
 
 - debug: msg="install chrome"
 - copy: src=google-chrome.repo dest=/etc/yum.repos.d/ follow=yes

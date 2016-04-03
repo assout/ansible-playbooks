@@ -23,14 +23,15 @@
     - https://github.com/assout/memolist
     - https://github.com/assout/remarkjs-sandbox
     - https://github.com/assout/scripts
+    - https://github.com/assout/todo.txt-cli # For note add-on. TODO: notesファイル名をタスク名にしたい(grepするので)
     - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
     - https://github.com/iwata/git-now
-    - https://github.com/mgarrido/todo.txt-cli # For note add-on. TODO: notesファイル名をタスク名にしたい(grepするので)
+    # - https://github.com/mgarrido/todo.txt-cli # 自分でforkしたやつにする
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
     - https://github.com/yascentur/RictyDiminished
-- shell: cd {{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli && git checkout note
+- shell: cd {{ ghq_root.stdout }}/github.com/assout/todo.txt-cli && git checkout note
 - shell: cd {{ ghq_root.stdout }}/github.com/iwata/git-now && git submodule init && git submodule update && make install
   become: yes
 
@@ -49,7 +50,7 @@
 
 - file: path=~/.todo.actions.d/ state=directory
 - file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo.actions.d/graph state=link
-- file: src={{ ghq_root.stdout }}/github.com/mgarrido/todo.txt-cli/todo.actions.d/{{ item }} dest=~/.todo.actions.d/{{ item }} state=link
+- file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-cli/todo.actions.d/{{ item }} dest=~/.todo.actions.d/{{ item }} state=link
   with_items:
     - archive
     - del
