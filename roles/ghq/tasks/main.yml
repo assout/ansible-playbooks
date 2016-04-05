@@ -26,14 +26,11 @@
     - https://github.com/assout/todo.txt-cli # For note add-on. TODO: notesファイル名をタスク名にしたい(grepするので)
     - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
-    - https://github.com/iwata/git-now
     # - https://github.com/mgarrido/todo.txt-cli # 自分でforkしたやつにする
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
     - https://github.com/yascentur/RictyDiminished
 - shell: cd {{ ghq_root.stdout }}/github.com/assout/todo.txt-cli && git checkout note
-- shell: cd {{ ghq_root.stdout }}/github.com/iwata/git-now && git submodule init && git submodule update && make install
-  become: yes
 
 - shell: "{{ ghq_root.stdout }}/github.com/assout/dotfiles/symlink.sh"
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist/symlink.sh"

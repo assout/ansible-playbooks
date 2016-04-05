@@ -15,6 +15,7 @@
 - npm: name=jsonlint global=yes
 - npm: name=markdown-html global=yes
 - npm: name=markdown-to-slides global=yes
+- npm: name=mermaid global=yes
 - npm: name=n global=yes
 - npm: name=textlint global=yes
 - npm: name=textlint-formatter-codecov global=yes
