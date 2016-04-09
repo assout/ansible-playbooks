@@ -23,14 +23,13 @@
     - https://github.com/assout/memolist
     - https://github.com/assout/remarkjs-sandbox
     - https://github.com/assout/scripts
-    - https://github.com/assout/todo.txt-cli # For note add-on. TODO: notesファイル名をタスク名にしたい(grepするので)
+    - https://github.com/assout/todo.txt-note
+    - https://github.com/assout/todo.txt-p
     - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
-    # - https://github.com/mgarrido/todo.txt-cli # 自分でforkしたやつにする
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
     - https://github.com/yascentur/RictyDiminished
-- shell: cd {{ ghq_root.stdout }}/github.com/assout/todo.txt-cli && git checkout note
 
 - shell: "{{ ghq_root.stdout }}/github.com/assout/dotfiles/symlink.sh"
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist/symlink.sh"
@@ -47,10 +46,6 @@
 
 - file: path=~/.todo.actions.d/ state=directory
 - file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo.actions.d/graph state=link
-- file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-cli/todo.actions.d/{{ item }} dest=~/.todo.actions.d/{{ item }} state=link
-  with_items:
-    - archive
-    - del
-    - note
-    - rm
+- file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-note/note dest=~/.todo.actions.d/note state=link
+- file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-p/p dest=~/.todo.actions.d/p state=link
 
