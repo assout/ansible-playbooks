@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/bin/bash -eu
+
+sudo dnf install -y \
+  ansible \
+  git \
+  python-dnf
 
 mkdir -p ~/Development/github.com/assout/
 cd ~/Development/github.com/assout/
@@ -6,7 +11,5 @@ git clone https://github.com/assout/ansible-playbooks.git
 cd ./ansible-playbooks
 git remote set-url origin git@github.com:assout/ansible-playbooks.git
 
-sudo dnf install ansible -y
-sudo dnf install python-dnf -y
 ansible-playbook site.yml -Kvvv --skip-tags "fail"
 

@@ -11,6 +11,7 @@
 - npm: name=gitbook global=yes
 - npm: name=gitbook-cli global=yes
 - npm: name=js-yaml global=yes
+- npm: name=jsdoc-to-markdown global=yes
 - npm: name=json2yaml global=yes
 - npm: name=jsonlint global=yes
 - npm: name=lcov-summary global=yes
