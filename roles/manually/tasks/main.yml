@@ -1,22 +1,5 @@
 ---
 
-- debug: msg="install peco"
-- command: which peco
-  register: has_peco
-  ignore_errors: yes
-  become: no
-- shell: curl -sI https://github.com/peco/peco/releases/latest | awk -F'/' '/^Location:/{print $NF}'
-  register: peco_latest_version
-  when: has_peco.rc != 0
-  tags:
-    - skip_ansible_lint
-- get_url: url=https://github.com/peco/peco/releases/download/{{ peco_latest_version.stdout }}/peco_linux_amd64.tar.gz dest=/tmp/peco_linux_amd64.tar.gz
-  when: has_peco.rc != 0
-- unarchive: src=/tmp/peco_linux_amd64.tar.gz dest=/tmp/
-  when: has_peco.rc != 0
-- copy: src=/tmp/peco_linux_amd64/peco dest={{ bin_dir }} mode=0755
-  when: has_peco.rc != 0
-
 - debug: msg="install ttygif"
 - command: which ttygif
   register: has_ttygif

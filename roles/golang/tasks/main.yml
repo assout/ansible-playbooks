@@ -2,5 +2,6 @@
 
 - command: go get {{ item }}
   with_items:
+    - github.com/peco/peco
     - github.com/yuroyoro/gommit-m
 
