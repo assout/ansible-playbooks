@@ -13,7 +13,6 @@
     - { role: dnf      , become: yes , tags: ["dnf"] }
     - { role: manually , become: yes , tags: ["manually"] }
     - { role: make     , become: yes , tags: ["make"] }
-    - { role: pms      , become: yes , tags: ["pms"] }
     - { role: npm      , become: yes , tags: ["npm"] }
     - { role: gem      , become: yes , tags: ["gem"] }
     - { role: golang   , become: no  , tags: ["golang"] }
