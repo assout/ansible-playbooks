@@ -33,6 +33,7 @@
 - npm: name=textlint-rule-no-mix-dearu-desumasu global=yes
 - npm: name=textlint-rule-no-start-duplicated-conjunction global=yes
 - npm: name=textlint-rule-no-todo global=yes
+- npm: name=textlint-rule-preset-japanese global=yes
 - npm: name=textlint-rule-preset-jtf-style global=yes
 - npm: name=textlint-rule-prh global=yes
 - npm: name=textlint-rule-sentence-length global=yes
