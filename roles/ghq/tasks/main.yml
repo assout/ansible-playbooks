@@ -20,7 +20,7 @@
     - https://github.com/assout/ansible-playbooks
     - https://github.com/assout/dotfiles
     - https://github.com/assout/lint-sandbox
-    - https://github.com/assout/memolist
+    - https://github.com/assout/memolist.wiki
     - https://github.com/assout/remarkjs-sandbox
     - https://github.com/assout/scripts
     - https://github.com/assout/todo.txt-note
@@ -32,7 +32,7 @@
     - https://github.com/yascentur/RictyDiminished
 
 - shell: "{{ ghq_root.stdout }}/github.com/assout/dotfiles/symlink.sh"
-- shell: "{{ ghq_root.stdout }}/github.com/assout/memolist/symlink.sh"
+- shell: "{{ ghq_root.stdout }}/github.com/assout/memolist.wiki/symlink.sh"
 
 - copy: src={{ item }} dest=/usr/share/fonts/ force=no
   with_fileglob: "{{ ghq_root.stdout }}/github.com/yascentur/RictyDiminished/*.ttf"
