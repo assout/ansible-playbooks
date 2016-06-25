@@ -2,6 +2,7 @@
 
 - command: go get {{ item }}
   with_items:
+    - github.com/Songmu/ghch/cmd/ghch
     - github.com/peco/peco
     - github.com/yuroyoro/gommit-m
 
