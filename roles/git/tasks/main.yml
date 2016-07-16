@@ -17,5 +17,5 @@
   tags : manual
 
 - git: repo=https://github.com/assout/dotfiles.git dest=${HOME}/Development/src/github.com/assout/dotfiles
-- shell: "${HOME}/Development/src/github.com/assout/dotfiles/symlink.sh"
+- shell: "${HOME}/Development/src/github.com/assout/dotfiles/symlink.sh" # TODO re login
  
