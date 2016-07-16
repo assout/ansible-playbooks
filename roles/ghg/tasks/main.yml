@@ -1,0 +1,8 @@
+---
+
+- command: ghg get {{ item }}
+  with_items:
+    - Songmu/ghch
+    - motemen/ghq
+    - peco/peco
+

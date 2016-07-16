@@ -2,8 +2,6 @@
 
 - command: go get -u {{ item }}
   with_items:
-    - github.com/Songmu/ghg/cmd/ghg
-    # - github.com/Songmu/ghch/cmd/ghch
-    # - github.com/peco/peco
-    # - github.com/yuroyoro/gommit-m
+    - github.com/assout/ghg/cmd/ghg
+    - github.com/yuroyoro/gommit-m
 
