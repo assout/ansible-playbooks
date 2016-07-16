@@ -5,8 +5,6 @@
 
 - command: ghq get -p {{ item }}
   with_items:
-    - https://github.com/assout/ansible-playbooks
-    - https://github.com/assout/dotfiles
     - https://github.com/assout/lint-sandbox
     - https://github.com/assout/memolist.wiki
     - https://github.com/assout/remarkjs-sandbox

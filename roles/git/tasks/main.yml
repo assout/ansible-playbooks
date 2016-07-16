@@ -16,3 +16,6 @@
   when : exit.rc not in [0, 1]
   tags : manual
 
+- git: repo=https://github.com/assout/dotfiles.git dest=${HOME}/Development/src/github.com/assout/dotfiles
+- shell: "${HOME}/Development/src/github.com/assout/dotfiles/symlink.sh"
+ 

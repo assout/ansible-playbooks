@@ -18,7 +18,6 @@
 - npm: name=markdown-html global=yes
 - npm: name=markdown-to-slides global=yes
 - npm: name=mermaid global=yes
-- npm: name=n global=yes
 - npm: name=remark global=yes
 - npm: name=remark-lint global=yes
 - npm: name=textlint global=yes
@@ -39,8 +38,7 @@
 - npm: name=textstat global=yes
 - npm: name=textstat-plugin-ja global=yes
 - npm: name=tldr global=yes
+  tags: fail
 - npm: name=ttystudio global=yes
 - npm: name=wunderline global=yes
-
-- command: n stable
 

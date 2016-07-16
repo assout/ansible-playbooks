@@ -28,18 +28,6 @@
 - get_url: url=https://raw.github.com/simonwhitaker/gibo/master/gibo dest={{ bin_dir }} mode=0755
   when: has_gibo.rc != 0
 
-- debug: msg="install redpen"
-- command: which redpen
-  register: has_redpen
-  ignore_errors: yes
-  become: no
-- get_url: url=https://github.com/redpen-cc/redpen/releases/download/v1.3.0/redpen-1.3.0.tar.gz dest=/tmp
-  when: has_redpen.rc != 0
-- unarchive: src=/tmp/redpen-1.3.0.tar.gz dest={{ lib_dir }}
-  when: has_redpen.rc != 0
-- file: src={{ lib_dir }}/redpen-distribution-1.3/bin/redpen dest={{ bin_dir }}/redpen mode=0755 state=link
-  when: has_redpen.rc != 0
-
 - debug: msg="install Todo.sh (todo.txt-cli)"
 - command: which todo.sh
   register: has_todo
@@ -54,10 +42,10 @@
 - file: src={{ lib_dir }}/todo.txt_cli-2.10/todo_completion dest=/etc/bash_completion.d/todo_completion mode=0755 state=link
   when: has_todo.rc != 0
 - file: path=~/Documents/todo state=directory
-  # when: has_todo.rc != 0
+  when: has_todo.rc != 0
   become: no
-- file: src=~/Documents/todo dest=~/Dropbox/todo mode=0755 state=link
-  # when: has_todo.rc != 0
+- file: src=~/Dropbox/todo dest=~/Documents/todo mode=0755 state=link
+  when: has_todo.rc != 0
   become: no
 
 # TODO: Not working. https://github.com/github/hub/issues/1041

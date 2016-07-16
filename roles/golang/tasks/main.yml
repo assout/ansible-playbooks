@@ -1,6 +1,6 @@
 ---
 
-- command: go get -u {{ item }}
+- shell: go get -u {{ item }}
   with_items:
     - github.com/assout/ghg/cmd/ghg
     - github.com/yuroyoro/gommit-m

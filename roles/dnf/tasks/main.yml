@@ -35,8 +35,7 @@
     - maven
     - community-mysql
     - nkf
-    - nodejs
-    - npm
+    - nodejs # TODO https://nodejs.org/en/download/package-manager/#enterprise-linux-and-fedora
     - pandoc
     - patch
     - plantuml
@@ -59,6 +58,9 @@
     - xwd # for ttygif
     - ShellCheck
   tags: slow
+
+- dnf: name=npm state=latest
+  tags: fail
 
 - debug: msg="install chrome"
 - copy: src=google-chrome.repo dest=/etc/yum.repos.d/ follow=yes
