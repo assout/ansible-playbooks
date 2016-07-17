@@ -5,23 +5,19 @@
   register: has_ttyrec
   ignore_errors: yes
   become: no
-- get_url: url="http://0xcc.net/ttyrec/{{ttyrec_ver}}.tar.gz" dest=/tmp
-  when: has_ttyrec.rc != 0
-- unarchive: src=/tmp/{{ttyrec_ver}}.tar.gz dest={{src_dir}}
-  when: has_ttyrec.rc != 0
-- get_url: url="http://paperlined.org/apps/rhel/building/ttyrec-1.0.8.RHEL5.patch" dest={{src_dir}}/{{ttyrec_ver}}
-  when: has_ttyrec.rc != 0
-  tags: fail
-- patch: src={{src_dir}}/{{ttyrec_ver}}/{{ttyrec_ver}}.RHEL5.patch basedir={{src_dir}}/{{ttyrec_ver}} strip=1 # refs: <https://github.com/mjording/ttyrec/issues/3>
-  when: has_ttyrec.rc != 0
-  tags: fail
-- command: chdir={{src_dir}}/{{ttyrec_ver}} make
-  when: has_ttyrec.rc != 0
-- copy: src={{src_dir}}/{{ttyrec_ver}}/{{ item.bin }} dest={{bin_dir}}/{{ item.bin }} mode=0755
-  with_items:
-    - { bin: 'ttyrec' }
-    - { bin: 'ttyplay' }
-    - { bin: 'ttytime' }
+- block:
+  - get_url: url="http://0xcc.net/ttyrec/{{ttyrec_ver}}.tar.gz" dest=/tmp
+  - unarchive: src=/tmp/{{ttyrec_ver}}.tar.gz dest={{src_dir}}
+  - get_url: url="http://paperlined.org/apps/rhel/building/ttyrec-1.0.8.RHEL5.patch" dest={{src_dir}}/{{ttyrec_ver}}
+    tags: fail
+  - patch: src={{src_dir}}/{{ttyrec_ver}}/{{ttyrec_ver}}.RHEL5.patch basedir={{src_dir}}/{{ttyrec_ver}} strip=1 # refs: <https://github.com/mjording/ttyrec/issues/3>
+    tags: fail
+  - command: chdir={{src_dir}}/{{ttyrec_ver}} make
+  - copy: src={{src_dir}}/{{ttyrec_ver}}/{{ item.bin }} dest={{bin_dir}}/{{ item.bin }} mode=0755
+    with_items:
+      - { bin: 'ttyrec' }
+      - { bin: 'ttyplay' }
+      - { bin: 'ttytime' }
   when: has_ttyrec.rc != 0
 
 - debug: msg="install seq2gif"

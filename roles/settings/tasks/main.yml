@@ -10,10 +10,9 @@
 - debug: msg="setting wunderline"
 - stat: path="~/.wunderlinerc"
   register: has_wunderline
-- copy: src=.wunderlinerc dest=/home/oji/ follow=yes
-  when: has_wunderline.stat.exists == False
-- replace: dest=~/.wunderlinerc regexp='__clientId__' replace={{ wunderClientId }}
-  when: has_wunderline.stat.exists == False
-- replace: dest=~/.wunderlinerc regexp='__accessToken__' replace={{ wunderAccessToken }}
+- block:
+  - copy: src=.wunderlinerc dest=/home/oji/ follow=yes
+  - replace: dest=~/.wunderlinerc regexp='__clientId__' replace={{ wunderClientId }}
+  - replace: dest=~/.wunderlinerc regexp='__accessToken__' replace={{ wunderAccessToken }}
   when: has_wunderline.stat.exists == False
 

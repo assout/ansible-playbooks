@@ -6,20 +6,17 @@
   register: exit
   failed_when: exit.rc not in [0, 1, 255]
 
-- user: name=oji generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+- block:
+  - user: name=oji generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+  - shell: cat ~/.ssh/id_rsa.pub | /usr/bin/xclip -sel clip
+  - pause: prompt="clipboard value to github.(https://github.com/settings/ssh)"
+    tags : manual
   when : exit.rc not in [0, 1]
-
-- shell: cat ~/.ssh/id_rsa.pub | /usr/bin/xclip -sel clip
-  when : exit.rc not in [0, 1]
-
-- pause: prompt="clipboard value to github.(https://github.com/settings/ssh)"
-  when : exit.rc not in [0, 1]
-  tags : manual
 
 - git: repo=git@github.com:assout/dotfiles.git dest=${HOME}/Development/src/github.com/assout/dotfiles
 - shell: "${HOME}/Development/src/github.com/assout/dotfiles/symlink.sh" # TODO re login
 
 - unarchive: src=https://github.com/tomokuni/Myrica/archive/2.006.20150301.tar.gz dest=/usr/share/fonts copy=no keep_newer=yes
   become: yes
+  tags : slow
 
- 

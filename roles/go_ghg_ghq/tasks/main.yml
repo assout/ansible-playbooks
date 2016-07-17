@@ -1,5 +1,16 @@
 ---
 
+- shell: go get -u {{ item }}
+  with_items:
+    - github.com/assout/ghg/cmd/ghg
+    - github.com/yuroyoro/gommit-m
+
+- command: ghg get {{ item }}
+  with_items:
+    - Songmu/ghch
+    - motemen/ghq
+    - peco/peco
+
 - command: ghq root
   register: ghq_root
 
@@ -28,4 +39,5 @@
 - file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo.actions.d/graph state=link
 - file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-note/note dest=~/.todo.actions.d/note state=link
 - file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-p/p dest=~/.todo.actions.d/p state=link
+
 
