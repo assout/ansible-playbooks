@@ -1,7 +1,5 @@
 ---
 
-# TODO git repo destでローカルの変更がうわがかれるのを阻止したい.
-
 - command: ssh -T git@github.com
   register: exit
   failed_when: exit.rc not in [0, 1, 255]
