@@ -15,14 +15,8 @@
     - https://github.com/chrismdp/p
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
-      #    - https://github.com/yascentur/RictyDiminished # TODO not found
 
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist.wiki/symlink.sh"
-
-- copy: src={{ item }} dest=/usr/share/fonts/ force=no
-  with_fileglob: "{{ ghq_root.stdout }}/github.com/yascentur/RictyDiminished/*.ttf"
-  become: yes
-  tags: fail
 
 - debug: msg="Setup tmux plug-ins"
 - file: src={{ ghq_root.stdout }}/github.com/aurelien-rainone/tmux-gitbar dest=~/.tmux-gitbar state=link
