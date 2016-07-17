@@ -6,8 +6,7 @@
   ignore_errors: yes
   become: no
 - block:
-  - get_url: url=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest=/tmp
-  - unarchive: src=/tmp/ttygif_linux_amd64.tar.gz dest={{ lib_dir }}
+  - unarchive: src=https://github.com/sugyan/ttygif/releases/download/0.0.1/ttygif_linux_amd64.tar.gz dest={{ lib_dir }} copy=no
   - copy: src={{ lib_dir }}/ttygif_linux_amd64/ttygif dest={{ bin_dir }} mode=0755
   when: has_ttygif.rc != 0
 
