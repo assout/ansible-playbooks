@@ -18,13 +18,10 @@
 
 - stat: path="~/.vim/dict/gene.txt"
   register: has_gene
-- get_url: url="http://www.namazu.org/~tsuchiya/sdic/data/gene95.tar.gz" dest=/tmp
-  when: has_gene.stat.exists == False
-- file: path=~/.vim/dict state=directory
-  when: has_gene.stat.exists == False
-- unarchive: src=/tmp/gene95.tar.gz dest=~/.vim/dict/
-  when: has_gene.stat.exists == False
-- shell: nkf -Sw -Lu -m0 --in-place ~/.vim/dict/gene.txt
+- block:
+  - file: path=~/.vim/dict state=directory
+  - unarchive: src=http://www.namazu.org/~tsuchiya/sdic/data/gene95.tar.gz dest=~/.vim/dict/ copy=no
+  - shell: nkf -Sw -Lu -m0 --in-place ~/.vim/dict/gene.txt
   when: has_gene.stat.exists == False
 
 # For undofile
