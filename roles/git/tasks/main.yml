@@ -16,9 +16,10 @@
   when : exit.rc not in [0, 1]
   tags : manual
 
-- git: repo=https://github.com/assout/dotfiles.git dest=${HOME}/Development/src/github.com/assout/dotfiles
+- git: repo=git@github.com:assout/dotfiles.git dest=${HOME}/Development/src/github.com/assout/dotfiles
 - shell: "${HOME}/Development/src/github.com/assout/dotfiles/symlink.sh" # TODO re login
 
-- unarchive: src=https://github.com/tomokuni/Myrica/archive/2.006.20150301.zip dest=/usr/share/fonts copy=no
+- unarchive: src=https://github.com/tomokuni/Myrica/archive/2.006.20150301.tar.gz dest=/usr/share/fonts copy=no keep_newer=yes
   become: yes
+
  
