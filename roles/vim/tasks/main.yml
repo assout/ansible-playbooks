@@ -1,5 +1,7 @@
 ---
 
+# TODO exec vim plug
+
 # TODO roles内での指定方法
 # - vars_prompt:
 #   - name: "hateblo_api_key"
