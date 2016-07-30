@@ -38,6 +38,7 @@
     - nodejs # TODO https://nodejs.org/en/download/package-manager/#enterprise-linux-and-fedora
     - pandoc
     - patch
+    - pcre-tools
     - plantuml
     - python-devel
     - python-pip
