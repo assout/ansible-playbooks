@@ -28,6 +28,7 @@
     - hg # for ttyrec2gif
     - hub
     - ibus-mozc # required logout/login
+    - jq
     - key-mon # screen key input
     - libselinux-python # for ansible run
     - lshw # Hardware Lister
@@ -39,10 +40,12 @@
     - pandoc
     - patch
     - pcre-tools
+    - pgadmin3.x86_64
     - plantuml
     - python-devel
     - python-pip
     - pigz
+    - postgresql.x86_64
     - ruby-devel
     - rubygems
     - shcov

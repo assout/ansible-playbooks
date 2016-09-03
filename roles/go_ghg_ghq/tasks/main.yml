@@ -10,6 +10,7 @@
     - Songmu/ghch
     - motemen/ghq
     - peco/peco
+    # - tomnomnom/gron # TODO fail
 
 - command: ghq root
   register: ghq_root

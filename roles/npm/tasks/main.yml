@@ -18,6 +18,7 @@
 - npm: name=markdown-html global=yes
 - npm: name=markdown-to-slides global=yes
 - npm: name=mermaid global=yes
+- npm: name=node-lambda global=yes
 - npm: name=remark global=yes
 - npm: name=remark-lint global=yes
 - npm: name=textlint global=yes
