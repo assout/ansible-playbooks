@@ -8,6 +8,7 @@
 - npm: name=eslint-config-eslint global=yes
 - npm: name=eslint-config-google global=yes
 - npm: name=eslint-md global=yes
+- npm: name=eslint_d global=yes
 - npm: name=gitbook global=yes
 - npm: name=gitbook-cli global=yes
 - npm: name=js-yaml global=yes
