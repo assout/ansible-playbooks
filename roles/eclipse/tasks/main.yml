@@ -12,6 +12,7 @@
   -repository http://download.eclipse.org/releases/mars \
   -installIU org.eclipse.epp.mpc.feature.group \
   "
+  tags: fail
 
 - name: eclipse | Install Maven Integration for Eclipse(m2e)
   command: "eclipse -nosplash \
@@ -51,6 +52,7 @@
   -installIU org.eclipse.egit.source.feature.group \
   -installIU org.eclipse.egit.mylyn.feature.group \
   "
+  tags: fail
 
 - name: eclipse | Install Java Decompiler Eclipse Plug-in | required Microsoft Visual C++ 2008 SP1 Redistributable Package
   command: "eclipse -nosplash \
@@ -101,6 +103,7 @@
   -repository http://download.eclipse.org/tm/terminal/marketplace, \
   -installIU org.eclipse.tm.terminal.feature.feature.group \
   "
+  tags: fail
 
 - name: eclipse | Install PlantUML
   command: "eclipse -nosplash \
