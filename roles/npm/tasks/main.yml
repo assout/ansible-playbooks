@@ -11,7 +11,6 @@
 - npm: name=eslint_d global=yes
 - npm: name=gitbook global=yes
 - npm: name=gitbook-cli global=yes
-- npm: name=gitgraph.js global=yes
 - npm: name=js-yaml global=yes
 - npm: name=jsdoc-to-markdown global=yes
 - npm: name=json2yaml global=yes
