@@ -10,6 +10,7 @@
     - ImageMagick
     - anki
     - apvlv # pdf viewer
+    - awscli
     - cadaver # WevDAV client
     - cmigemo
     - ctags

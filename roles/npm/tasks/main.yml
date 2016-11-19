@@ -22,6 +22,7 @@
 - npm: name=node-lambda global=yes
 - npm: name=remark global=yes
 - npm: name=remark-lint global=yes
+- npm: serverless global=yes
 - npm: name=textlint global=yes
 - npm: name=textlint-formatter-codecov global=yes
 - npm: name=textlint-formatter-lcov global=yes
