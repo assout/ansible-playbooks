@@ -23,7 +23,6 @@
     - https://github.com/assout/scripts
     - https://github.com/assout/todo.txt-note
     - https://github.com/assout/todo.txt-p
-    - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
@@ -31,8 +30,6 @@
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist.wiki/symlink.sh"
 
 - debug: msg="Setup tmux plug-ins"
-- file: src={{ ghq_root.stdout }}/github.com/aurelien-rainone/tmux-gitbar dest=~/.tmux-gitbar state=link
-
 - file: path=~/.tmux/plugins/ state=directory
 - file: src={{ ghq_root.stdout }}/github.com/tmux-plugins/tpm dest=~/.tmux/plugins/tpm state=link
 
