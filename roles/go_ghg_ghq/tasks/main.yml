@@ -3,7 +3,7 @@
 - shell: go get -u {{ item }}
   with_items:
     - github.com/Songmu/ghg/cmd/ghg
-    - github.com/simeji/jid
+    - github.com/simeji/jid/cmd/jid
     - github.com/yuroyoro/gommit-m
 
 - command: ghg get {{ item }}
