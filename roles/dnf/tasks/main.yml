@@ -6,13 +6,17 @@
 
 - dnf: name={{ item }} state=latest
   with_items:
-    - R-core # For https://github.com/hyiltiz/vim-plugins-profile
     - ImageMagick
+    - R-core # For https://github.com/hyiltiz/vim-plugins-profile
+    - ShellCheck
     - anki
     - apvlv # pdf viewer
+    - automake # for YouCompleteMe
     - awscli
     - cadaver # WevDAV client
+    - cmake # for YouCompleteMe
     - cmigemo
+    - community-mysql
     - ctags
     - dconf-editor
     - devscripts-minimal # for checkbahisms
@@ -21,6 +25,8 @@
     - figlet
     - ftp
     - gcc
+    - gcc # for YouCompleteMe
+    - gcc-c++ # for YouCompleteMe
     - gftp # ftp client
     - gnome-tweak-tool
     - go
@@ -30,23 +36,23 @@
     - hub
     - ibus-mozc # required logout/login
     - jq
+    - kernel-devel # for YouCompleteMe
     - key-mon # screen key input
     - libselinux-python # for ansible run
     - lshw # Hardware Lister
     - man-pages-ja
     - maven
-    - community-mysql
     - nkf
     - nodejs # TODO https://nodejs.org/en/download/package-manager/#enterprise-linux-and-fedora
     - pandoc
     - patch
     - pcre-tools
     - pgadmin3.x86_64
+    - pigz
     - plantuml
+    - postgresql.x86_64
     - python-devel
     - python-pip
-    - pigz
-    - postgresql.x86_64
     - ruby-devel
     - rubygems
     - shcov
@@ -61,7 +67,6 @@
     - xclip
     - xvkbd # for vim-plugin im_control.
     - xwd # for ttygif
-    - ShellCheck
   tags: slow
 
 - dnf: name=npm state=latest

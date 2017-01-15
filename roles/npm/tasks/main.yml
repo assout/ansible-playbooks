@@ -18,6 +18,7 @@
 - npm: name=lcov-summary global=yes
 - npm: name=markdown-html global=yes
 - npm: name=markdown-to-slides global=yes
+- npm: markdown-to-slides-server global=yes
 - npm: name=mermaid global=yes
 - npm: name=node-lambda global=yes
 - npm: name=remark global=yes
