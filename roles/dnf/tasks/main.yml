@@ -57,6 +57,7 @@
     - rubygems
     - shcov
     - shunit2
+    - socat
     - strace
     - sysstat
     - tig
