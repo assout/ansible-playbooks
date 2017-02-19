@@ -9,7 +9,6 @@
 - npm: global=yes name=eslint-config-google
 - npm: global=yes name=eslint-md
 - npm: global=yes name=eslint_d
-- npm: global=yes name=gitbook
 - npm: global=yes name=gitbook-cli
 - npm: global=yes name=js-yaml
 - npm: global=yes name=jsdoc-to-markdown
