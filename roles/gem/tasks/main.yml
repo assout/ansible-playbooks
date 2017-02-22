@@ -1,11 +1,12 @@
 ---
 
-- gem: name=rubygems-update user_install=no
+- gem: user_install=no name=rubygems-update
 
-- gem: name=mdl user_install=no
-- gem: name=rainbow user_install=no # For todo.sh pomodori add-on
-- gem: name=rhc user_install=no # OpenShift Client
-- gem: name=sqlint user_install=no
-- gem: name=travis user_install=no
-- gem: name=travis-lint user_install=no
-- gem: name=yaml-lint user_install=no
+- gem: user_install=no name=jekyll
+- gem: user_install=no name=mdl
+- gem: user_install=no name=rainbow # For todo.sh pomodori add-on
+- gem: user_install=no name=rhc # OpenShift Client
+- gem: user_install=no name=sqlint
+- gem: user_install=no name=travis
+- gem: user_install=no name=travis-lint
+- gem: user_install=no name=yaml-lint
