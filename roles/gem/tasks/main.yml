@@ -1,6 +1,7 @@
 ---
 
 - gem: user_install=no name=rubygems-update
+# - gem: user_install=no name=rubygem-bundler
 
 - gem: user_install=no name=jekyll
 - gem: user_install=no name=mdl
