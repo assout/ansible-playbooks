@@ -2,6 +2,7 @@
 
 - pip: name=ansible-lint
 - pip: name=bashate
+- pip: name=cheat
 - pip: name=docker-compose
 - pip: name=mycli # MySQL Client
 - pip: name=vim-vint
