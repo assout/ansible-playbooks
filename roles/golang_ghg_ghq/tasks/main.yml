@@ -1,5 +1,4 @@
 ---
-# TODO:sudo yum install https://github.com/jhawthorn/fzy/releases/download/0.7/fzy-0.7-1.x86_64.rpm
 
 - shell: go get -u {{ item }}
   with_items:
@@ -10,10 +9,10 @@
 - command: ghg get {{ item }}
   with_items:
     - Songmu/ghch
+    # - haya14busa/reviewdog # TODO fail
     - motemen/ghq
-    # - tomnomnom/gron # TODO fail
     - pranavraja/tldr
-
+    # - tomnomnom/gron # TODO fail
 - command: ghq root
   register: ghq_root
 

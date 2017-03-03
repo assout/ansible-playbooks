@@ -1,5 +1,7 @@
 ---
 
+# TODO:sudo yum install https://github.com/jhawthorn/fzy/releases/download/0.7/fzy-0.7-1.x86_64.rpm
+
 - name: upgrade all packages
   dnf: name=* state=latest
   tags: slow
