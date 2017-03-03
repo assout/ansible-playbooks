@@ -9,16 +9,16 @@
     # Caution: homeディレクトリの英語化を早めにやったほうがよい.
     # Caution: gnomeの設定を早めにやりたい(操作性)
     #
-    - { role: gnome      , become: no  , tags: ["gnome"] }
-    - { role: dnf        , become: yes , tags: ["dnf"] }
-    - { role: manually   , become: yes , tags: ["manually"] }
-    - { role: make       , become: yes , tags: ["make"] }
-    - { role: npm        , become: yes , tags: ["npm"] }
-    - { role: gem        , become: yes , tags: ["gem"] }
-    - { role: pip        , become: yes , tags: ["pip"] }
-    - { role: git        , become: no  , tags: ["git"] }
-    - { role: go_ghg_ghq , become: no  , tags: ["go_ghg_ghq"] }
-    - { role: vim        , become: no  , tags: ["vim"], hateblo_api_key: '' }
-    - { role: eclipse    , become: no  , tags: ["eclipse", "slow"] }
-    - { role: settings   , become: no  , tags: ["settings"], wunderClientId: '', wunderAccessToken: '' }
+    - { role: gnome,          become: no  , tags: ["gnome"] }
+    - { role: dnf,            become: yes , tags: ["dnf"] }
+    - { role: manually,       become: yes , tags: ["manually"] }
+    - { role: make,           become: yes , tags: ["make"] }
+    - { role: npm,            become: yes , tags: ["npm"] }
+    - { role: gem,            become: yes , tags: ["gem"] }
+    - { role: pip,            become: yes , tags: ["pip"] }
+    - { role: git,            become: no  , tags: ["git"] }
+    - { role: golang_ghg_ghq, become: no  , tags: ["golang_ghg_ghq"] }
+    - { role: vim,            become: no  , tags: ["vim"], hateblo_api_key: '' }
+    - { role: eclipse,        become: no  , tags: ["eclipse", "slow"] }
+    - { role: settings,       become: no  , tags: ["settings"], wunderClientId: '', wunderAccessToken: '' }
 

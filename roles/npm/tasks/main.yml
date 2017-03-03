@@ -41,7 +41,6 @@
 - npm: global=yes name=textlint-rule-prh
 - npm: global=yes name=textstat
 - npm: global=yes name=textstat-plugin-ja
-- npm: global=yes name=tldr ignore_scripts=yes # Refs: https://github.com/tldr-pages/tldr-node-client/pull/92
 - npm: global=yes name=ttystudio
 - npm: global=yes name=wunderline
 

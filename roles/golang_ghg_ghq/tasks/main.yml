@@ -12,6 +12,7 @@
     - Songmu/ghch
     - motemen/ghq
     # - tomnomnom/gron # TODO fail
+    - pranavraja/tldr
 
 - command: ghq root
   register: ghq_root
@@ -24,6 +25,7 @@
     - https://github.com/assout/scripts
     - https://github.com/assout/todo.txt-note
     - https://github.com/assout/todo.txt-p
+    - https://github.com/chrisallenlane/cheat # For completion
     - https://github.com/chrismdp/p
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
