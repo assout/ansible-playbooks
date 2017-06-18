@@ -40,4 +40,3 @@
 - file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-note/note dest=~/.todo.actions.d/note state=link
 - file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-p/p dest=~/.todo.actions.d/p state=link
 
-
