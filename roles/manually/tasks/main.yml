@@ -40,5 +40,6 @@
   when: has_todo.rc != 0
 
 # TODO: Not working. https://github.com/github/hub/issues/1041
+- debug: msg="install hub completion"
 - get_url: url=https://raw.githubusercontent.com/github/hub/master/etc/hub.bash_completion.sh dest=/etc/bash_completion.d/hub.bash_completion.sh
 
