@@ -65,14 +65,13 @@
   -repository http://quick-junit.sourceforge.jp/updates/current/ \
   -installIU junit.extensions.eclipse.quick.feature.feature.group \
   "
-  tags: fail
 
-- name: eclipse | Install ShellEd
-  command: "eclipse -nosplash \
-  -application org.eclipse.equinox.p2.director \
-  -repository http://sourceforge.net/projects/shelled/files/shelled/update,http://download.eclipse.org/releases/mars \
-  -installIU net.sourceforge.shelled.feature.group \
-  "
+# - name: eclipse | Install ShellEd
+#   command: "eclipse -nosplash \
+#   -application org.eclipse.equinox.p2.director \
+#   -repository http://sourceforge.net/projects/shelled/files/shelled/update,http://download.eclipse.org/releases/mars \
+#   -installIU net.sourceforge.shelled.feature.group \
+#   "
 
 - name: eclipse | Install Vrapper
   command: "eclipse -nosplash \
@@ -108,7 +107,6 @@
   -repository http://basar.idi.ntnu.no/svn/tdt4100/anonymous/trunk/updatesite, \
   -installIU net.sourceforge.plantuml.feature.feature.group \
   "
-  tags: fail
 
 - name: eclipse | Install PMD
   command: "eclipse -nosplash \
@@ -117,10 +115,10 @@
   -installIU net.sourceforge.pmd.eclipse.feature.group \
   "
 
-- name: eclipse | Install Gradle IDE Pack
-  command: "eclipse -nosplash \
-  -application org.eclipse.equinox.p2.director \
-  -repository http://www.nodeclipse.org/updates/gradle-ide-pack, \
-  -installIU org.springsource.ide.eclipse.gradle.feature.feature.group \
-  "
+# - name: eclipse | Install Gradle IDE Pack
+#   command: "eclipse -nosplash \
+#   -application org.eclipse.equinox.p2.director \
+#   -repository http://www.nodeclipse.org/updates/gradle-ide-pack, \
+#   -installIU org.springsource.ide.eclipse.gradle.feature.feature.group \
+#   "
 

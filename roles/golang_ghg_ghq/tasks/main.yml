@@ -4,15 +4,15 @@
   with_items:
     - github.com/Songmu/ghg/cmd/ghg
     - github.com/dufferzafar/cheat
+    - github.com/simeji/jid/cmd/jid
     - github.com/yuroyoro/gommit-m
 
 - command: ghg get {{ item }}
   with_items:
     - Songmu/ghch
+    # - haya14busa/reviewdog # TODO fail
     - motemen/ghq
-    - peco/peco
     # - tomnomnom/gron # TODO fail
-
 - command: ghq root
   register: ghq_root
 
@@ -24,7 +24,6 @@
     - https://github.com/assout/scripts
     - https://github.com/assout/todo.txt-note
     - https://github.com/assout/todo.txt-p
-    - https://github.com/aurelien-rainone/tmux-gitbar
     - https://github.com/chrismdp/p
     - https://github.com/timpulver/todo.txt-graph # For graph add-on.
     - https://github.com/tmux-plugins/tpm
@@ -32,8 +31,6 @@
 - shell: "{{ ghq_root.stdout }}/github.com/assout/memolist.wiki/symlink.sh"
 
 - debug: msg="Setup tmux plug-ins"
-- file: src={{ ghq_root.stdout }}/github.com/aurelien-rainone/tmux-gitbar dest=~/.tmux-gitbar state=link
-
 - file: path=~/.tmux/plugins/ state=directory
 - file: src={{ ghq_root.stdout }}/github.com/tmux-plugins/tpm dest=~/.tmux/plugins/tpm state=link
 
@@ -41,5 +38,4 @@
 - file: src={{ ghq_root.stdout }}/github.com/timpulver/todo.txt-graph dest=~/.todo.actions.d/graph state=link
 - file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-note/note dest=~/.todo.actions.d/note state=link
 - file: src={{ ghq_root.stdout }}/github.com/assout/todo.txt-p/p dest=~/.todo.actions.d/p state=link
-
 

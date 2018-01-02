@@ -36,3 +36,21 @@
 - command: chdir={{src_dir}}/seq2gif-{{seq2gif_ver}} make install
   when: has_seq2gif.rc != 0
 
+# - debug: msg="install universal ctags"
+# - command: which ctags
+#   register: has_ctags
+#   ignore_errors: yes
+#   become: no
+# - get_url: url="https://github.com/universal-ctags/ctags/archive/master.zip" dest=/tmp
+#   when: has_ctags.rc != 0
+# - unarchive: src=/tmp/ctags-master.zip dest={{src_dir}}
+#   when: has_ctags.rc != 0
+# - command: chdir={{src_dir}}/ctags-master ./autogen.sh
+#   when: has_ctags.rc != 0
+# - command: chdir={{src_dir}}/ctags-master ./configure
+#   when: has_ctags.rc != 0
+# - command: chdir={{src_dir}}/ctags-master make
+#   when: has_ctags.rc != 0
+# - command: chdir={{src_dir}}/ctags-master make install
+#   when: has_ctags.rc != 0
+
