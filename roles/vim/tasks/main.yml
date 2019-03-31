@@ -7,6 +7,8 @@
 #   - name: "hateblo_api_key"
 #     prompt: "Please enter your hateblo-apikey. see http://blog.hatena.ne.jp/assout/assout.hatenablog.com/config/detail"
 
+- file: path=~/.vim/backup/ state=directory
+- file: path=~/.cache/undo state=directory
 - file: path=~/.vim/autoload/ state=directory
 - get_url: url=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim dest=~/.vim/autoload/plug.vim
 
@@ -24,6 +26,4 @@
   - shell: nkf -Sw -Lu -m0 --in-place ~/.vim/dict/gene.txt
   when: has_gene.stat.exists == False
 
-- file: path=~/.vim/backup/ state=directory
-- file: path=~/.cache/undo state=directory
 
